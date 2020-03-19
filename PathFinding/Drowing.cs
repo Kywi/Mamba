@@ -24,29 +24,21 @@ namespace PathFinding
         private int step=1;
         private int[] closed_cell;
 
-        public struct Point
-        {
-            public int x, y, z;
-
-            public Point(int tx, int ty, int tz)
-            {
-                x = tx;
-                y = ty;
-                z = tz;
-            }
-
-            public static bool operator ==(Point c1, Point c2)
-            {
-                return c1.z == c2.z;
-            }
-
-            public static bool operator !=(Point c1, Point c2)
-            {
-                return c1.z != c2.z;
-            }
-
-        }
-
+        public Ppoint Start_point { get; set; } = new Ppoint(-1, -1, -1);
+        public Ppoint Finish_point { get; set; } = new Ppoint(-1, -1, -1);
+        [JsonIgnore]
+        public Ppoint Check_point { get; set; } = new Ppoint(-1, -1, -1);
+        public int NColumnX { get => nColumnX; set => nColumnX = value; }
+        public int NRowsY { get => nRowsY; set => nRowsY = value; }
+        public int CellSize { get => cellSize; set => cellSize = value; }
+        public bool[] Map { get => map; set => map = value; }
+        [JsonIgnore]
+        public Form1 Form1 { get => form1; set => form1 = value; }
+        internal Animations Anim { get => anim; set => anim = value; }
+        public int[] Processed_cells { get => processed_cells; set => processed_cells = value; }
+        [JsonIgnore]
+        public int Step { get => step; set => step = value; }
+        public int[] Closed_cell { get => closed_cell; set => closed_cell = value; }
 
         //----------------------------------------------------
 
@@ -60,22 +52,6 @@ namespace PathFinding
         {
 
         }
-
-        public Point Start_point { get; set; } = new Point(-1, -1, -1);
-        public Point Finish_point { get; set; } = new Point(-1, -1, -1);
-        [JsonIgnore]
-        public Point Check_point { get; set; } = new Point(-1, -1, -1);
-        public int NColumnX { get => nColumnX; set => nColumnX = value; }
-        public int NRowsY { get => nRowsY; set => nRowsY = value; }
-        public int CellSize { get => cellSize; set => cellSize = value; }
-        public bool[] Map { get => map; set => map = value; }
-        [JsonIgnore]
-        public Form1 Form1 { get => form1; set => form1 = value; }
-        internal Animations Anim { get => anim; set => anim = value; }
-        public int[] Processed_cells { get => processed_cells; set => processed_cells = value; }
-        [JsonIgnore]
-        public int Step { get => step; set => step = value; }
-        public int[] Closed_cell { get => closed_cell; set => closed_cell = value; }
 
         public static int Absol_Coord(int rowY, int columnX, int numberOfColums)
         {
@@ -123,12 +99,12 @@ namespace PathFinding
                 case MouseButtons.Left:
                     if (Start_point.z == abs_coord)
                     {
-                        Start_point = new Point(-1, -1, -1);
+                        Start_point = new Ppoint(-1, -1, -1);
                     }
 
                     if (Finish_point.z == abs_coord)
                     {
-                        Finish_point = new Point(-1, -1, -1);
+                        Finish_point = new Ppoint(-1, -1, -1);
                     }
 
                     if (mode == 2)
@@ -143,11 +119,11 @@ namespace PathFinding
                     break;
                 case MouseButtons.Right:
                     Map[abs_coord] = false;
-                    Start_point = new Point(x_cell_cliceked, y_cell_cliced, abs_coord);
+                    Start_point = new Ppoint(x_cell_cliceked, y_cell_cliced, abs_coord);
                     break;
                 case MouseButtons.Middle:
                     Map[abs_coord] = false;
-                    Finish_point = new Point(x_cell_cliceked, y_cell_cliced, abs_coord);
+                    Finish_point = new Ppoint(x_cell_cliceked, y_cell_cliced, abs_coord);
                     break;
             }
             Form1.X = x_cell_cliceked;
@@ -174,12 +150,17 @@ namespace PathFinding
                     Form1.size_cell.Value = CellSize;
                     break;
             }
-            Start_point  = new Point(-1, -1, -1);
-            Finish_point = new Point(-1, -1, -1);
+            Start_point  = new Ppoint(-1, -1, -1);
+            Finish_point = new Ppoint(-1, -1, -1);
              Form1.DrawPanel.Load();
             Anim = new Animations(Form1, this);
             map_new_labir();
             Anim.reDraw_Screen();
+        }
+
+        public void Show_Step(int Find_Step)
+        {
+            MessageBox.Show("Виконано за " + Find_Step.ToString() + " кроків", "Результат виконання", MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
     }

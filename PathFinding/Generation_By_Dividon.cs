@@ -9,33 +9,38 @@ namespace PathFinding
 {
     class Generation_By_Dividon : Generation_Interface
     {
+        //----------------------------------------------------Variables
+
         private Form1 form1;
         private Drowing draw_copy;
         private Stack<rect_point> Rect_Points = new Stack<rect_point>();
         private rect_point temp;
 
-
-        class hole
+        struct hole
         {
-            public hole(int ch,char sd)
+            public int count_holes;
+            public char side;
+
+            public hole(int ch, char sd)
             {
                 count_holes = ch;
                 side = sd;
             }
-            public int count_holes;
-            public char side;
         }
 
         struct rect_point
         {
-            public rect_point(int p1x,int p1y, int p2x,int p2y)
+            public Ppoint P1;
+            public Ppoint P2;
+
+            public rect_point(int p1x, int p1y, int p2x, int p2y)
             {
-                P1 = new Drowing.Point(p1x,p1y, 0);
-                P2 = new Drowing.Point(p2x, p2y, 0);
+                P1 = new Ppoint(p1x, p1y, 0);
+                P2 = new Ppoint(p2x, p2y, 0);
             }
-            public Drowing.Point P1;
-            public Drowing.Point P2;
         }
+
+        //-------------------------------------------------------------
 
         public Generation_By_Dividon(Form1 form1,Drowing draw_copy)
         {
@@ -47,8 +52,6 @@ namespace PathFinding
         {
             draw_copy.init_drowing(2);
         }
-
-
 
         public void create_Labyrithm()
         {
@@ -68,8 +71,6 @@ namespace PathFinding
                 int x0, y0; // претин ліній ділення
                 int rt=0;
                 int rk = ry.Next(Y_Numb_of_dividion - 1) + 1;
-                //int rt = rx.Next(1, X_Numb_of_dividion);
-                //int rk = ry.Next(1, Y_Numb_of_dividion);
                 if ((X_Numb_of_dividion / Y_Numb_of_dividion) >= 2)
                 {
                     rt = rx.Next(Convert.ToInt32(Math.Round(X_Numb_of_dividion * 0.3)), Convert.ToInt32(Math.Round(X_Numb_of_dividion * 0.7)));
@@ -132,9 +133,7 @@ namespace PathFinding
                             break;
                     }
                     draw_copy.Map[Drowing.Absol_Coord(_y, _x, draw_copy.NColumnX)] = false;
-
-                }
-                
+                }             
                 form1.visualisation_mode(mode, form1, 1);
                 flag_reverse = !flag_reverse;
             }
@@ -142,14 +141,6 @@ namespace PathFinding
             form1.update_screen();
             form1.lock_buttons();
             form1.DrawPanel.Enabled = true;
-
         }
-
-        
-
-
-
-
-
     }
 }

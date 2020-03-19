@@ -161,26 +161,35 @@ namespace PathFinding
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string ser = "";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                if (openFileDialog1.FileName == null) return;
-                BinaryReader fin = new BinaryReader(new FileStream(openFileDialog1.FileName, FileMode.Open));
-                while (fin.BaseStream.Position != fin.BaseStream.Length)
+                string ser = "";
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    ser = fin.ReadString();
+                    if (openFileDialog1.FileName == null) return;
+                    BinaryReader fin = new BinaryReader(new FileStream(openFileDialog1.FileName, FileMode.Open));
+                    while (fin.BaseStream.Position != fin.BaseStream.Length)
+                    {
+                        ser = fin.ReadString();
+                    }
+                    fin.Close();
+                    Drowing temp = new Drowing(this);
+                    temp = JsonConvert.DeserializeObject<Drowing>(ser);
+                    cColunm_X.Value = temp.NColumnX;
+                    cRows_Y.Value = temp.NRowsY;
+                    Draw = temp;
+                    Draw.Form1 = this;
+                    DrawPanel.Load();
+                    Draw.Anim = new Animations(this, Draw);
+                    A = 3;
+                    DrawPanel.Invalidate();
                 }
-                fin.Close();
-                Drowing temp = new Drowing(this);
-                temp = JsonConvert.DeserializeObject<Drowing>(ser);
-                cColunm_X.Value = temp.NColumnX;
-                cRows_Y.Value = temp.NRowsY;
-                Draw = temp;
-                Draw.Form1 = this;
-                DrawPanel.Load();
-                Draw.Anim = new Animations(this, Draw);
-                A = 3;
+            }catch(IOException x)
+            {
+                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                A = 1;
                 DrawPanel.Invalidate();
+                DrawPanel.Update();
             }
 
         }
@@ -429,6 +438,25 @@ namespace PathFinding
                 generation_By_Dividon.create_Labyrithm();
             });
             Demostr.Start();
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (openFileDialog2.ShowDialog() == DialogResult.OK)
+                {
+                    Recognition_pict recognition = new Recognition_pict(this, draw);
+                    recognition.recogn_Picture(openFileDialog2.FileName.ToString());
+                }
+            }catch(IOException x)
+            {
+                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                A = 1;
+                DrawPanel.Invalidate();
+                DrawPanel.Update();
+            }
         }
 
         private void Deep_Generation()

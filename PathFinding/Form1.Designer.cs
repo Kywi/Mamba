@@ -37,6 +37,8 @@
             this.cColunm_X = new System.Windows.Forms.NumericUpDown();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button9 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button7 = new System.Windows.Forms.Button();
@@ -57,8 +59,8 @@
             this.DrawPanel = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.size_cell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cRows_Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cColunm_X)).BeginInit();
@@ -180,6 +182,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.comboBox1);
@@ -209,9 +212,33 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(-1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1340, 67);
+            this.panel1.Size = new System.Drawing.Size(1454, 67);
             this.panel1.TabIndex = 20;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Ділення",
+            "Пошуку"});
+            this.comboBox2.Location = new System.Drawing.Point(1181, 3);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(92, 21);
+            this.comboBox2.TabIndex = 22;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Волна",
+            "А*"});
+            this.comboBox1.Location = new System.Drawing.Point(1070, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(92, 21);
+            this.comboBox1.TabIndex = 21;
             // 
             // button9
             // 
@@ -429,29 +456,19 @@
             // 
             this.saveFileDialog1.Filter = "Карта лабіринта(*.LMap)|*.LMap";
             // 
-            // comboBox1
+            // button6
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Волна",
-            "А*"});
-            this.comboBox1.Location = new System.Drawing.Point(1070, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(92, 21);
-            this.comboBox1.TabIndex = 21;
+            this.button6.Location = new System.Drawing.Point(1289, 29);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(92, 22);
+            this.button6.TabIndex = 39;
+            this.button6.Text = "Розпізнати";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
-            // comboBox2
+            // openFileDialog2
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Ділення",
-            "Пошуку"});
-            this.comboBox2.Location = new System.Drawing.Point(1181, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(92, 21);
-            this.comboBox2.TabIndex = 22;
+            this.openFileDialog2.Filter = "Зображення лабіринту(*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png;";
             // 
             // Form1
             // 
@@ -464,7 +481,7 @@
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Генерація і проходження лабіринту";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -512,6 +529,8 @@
         public System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
 

@@ -9,23 +9,26 @@ namespace PathFinding
 {
     class GenerationAI : Generation_Interface
     {
+        //-----------------------------------------Variables
         private Form1 form1;
         private Drowing draw_copy;
-        private Stack<Drowing.Point> chain_cells = new Stack<Drowing.Point>();
-        private Drowing.Point temp;
+        private Stack<Ppoint> chain_cells = new Stack<Ppoint>();
+        private Ppoint temp;
         private List<neibours> neibor = new List<neibours>();
 
         struct neibours
         {
-            public neibours(Drowing.Point pt, char sidet)
+            public neibours(Ppoint pt, char sidet)
             {
                 p = pt;
                 side = sidet;
             }
 
-            public Drowing.Point p;
+            public Ppoint p;
             public char side;
         }
+
+        //------------------------------------------------
 
         public GenerationAI(Form1 form1, Drowing draw_copy)
         {
@@ -74,7 +77,7 @@ namespace PathFinding
             _z = Drowing.Absol_Coord(_y, _x, draw_copy.NColumnX);
             if (draw_copy.Map[_z]) return;
             if (draw_copy.Processed_cells[_z] != 0) return;
-            neibor.Add(new neibours(new Drowing.Point(_x,_y,_z), side));
+            neibor.Add(new neibours(new Ppoint(_x,_y,_z), side));
         }
         
         public void create_Labyrithm()
@@ -82,7 +85,7 @@ namespace PathFinding
             int mode = form1.Flag_radioButtons;
             draw_copy.Step = 2;
             Random rand = new Random();
-            temp = new Drowing.Point(1, 1, Drowing.Absol_Coord(1, 1, draw_copy.NColumnX));
+            temp = new Ppoint(1, 1, Drowing.Absol_Coord(1, 1, draw_copy.NColumnX));
             neibours nt;
             int _y = 0, _x = 0, _z = 0;
             draw_copy.Processed_cells[Drowing.Absol_Coord(1, 1, draw_copy.NColumnX)] = draw_copy.Step;
@@ -137,7 +140,7 @@ namespace PathFinding
 
             }
             draw_copy.Processed_cells = new int[draw_copy.NColumnX * draw_copy.NRowsY];
-            draw_copy.Check_point = new Drowing.Point(-1, -1, -1);
+            draw_copy.Check_point = new Ppoint(-1, -1, -1);
             draw_copy.Step = 1;
             
             form1.update_screen();

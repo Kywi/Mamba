@@ -9,26 +9,27 @@ namespace PathFinding
 {
     class Algorithm_A
     {
+        //-----------------------------------------Variables
         private Form1 form1;
         private Drowing draw_copy;
         private List<struct_open_cell> open_Cells = new List<struct_open_cell>();
         
         struct struct_open_cell
         {
-            public Drowing.Point point;
+            public Ppoint point;
             public int G, H, F;
-            public Drowing.Point parent_cell;
+            public Ppoint parent_cell;
 
-            public struct_open_cell(int x, int y, int z, int g, int h, int f, Drowing.Point parent)
+            public struct_open_cell(int x, int y, int z, int g, int h, int f, Ppoint parent)
             {
-                point = new Drowing.Point(x, y, z);
+                point = new Ppoint(x, y, z);
                 G = g;
                 H = h;
                 F = f;
                 parent_cell = parent;
             }
         }
-
+        //-----------------------------------------------
 
         public Algorithm_A(Form1 form1, Drowing draw_copy)
         {
@@ -93,7 +94,8 @@ namespace PathFinding
                     _x = x + 1;
                     _y = y + 1;
                     g += 14;
-                    if (_x >= draw_copy.NColumnX || _y >= draw_copy.NRowsY || draw_copy.Map[Drowing.Absol_Coord(y, _x, draw_copy.NColumnX)]
+                    if (_x >= draw_copy.NColumnX || _y >= draw_copy.NRowsY ||
+                        draw_copy.Map[Drowing.Absol_Coord(y, _x, draw_copy.NColumnX)]
                         || draw_copy.Map[Drowing.Absol_Coord(_y, x, draw_copy.NColumnX)]) return;
                     break;
             }
@@ -131,7 +133,6 @@ namespace PathFinding
 
         public void Path_Finding()
         {
-
             if (draw_copy.Start_point.z == -1 || draw_copy.Finish_point.z == -1)
             {
                 MessageBox.Show("Встановіть старт та фініш", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -159,6 +160,7 @@ namespace PathFinding
             open_Cells.Add(new struct_open_cell(draw_copy.Start_point.x, draw_copy.Start_point.y,
                 draw_copy.Start_point.z, 0, _h, _h, draw_copy.Start_point));
 
+            bool flag_find_step = true;
             while(open_Cells.Count != 0)
             {
                 open_Cells.Sort((x, y) => x.F.CompareTo(y.F));
@@ -181,7 +183,11 @@ namespace PathFinding
                 }
                 if ((draw_copy.Closed_cell[draw_copy.Finish_point.z] != 0) && (draw_copy.Step != 2))
                 {
-                    find_step = draw_copy.Step;
+                    if (flag_find_step)
+                    {
+                        find_step = draw_copy.Step;
+                        flag_find_step = false;
+                    }
                     if (form1.checkBox1.Checked)
                     {
                         form1.visualisation_mode(mode, form1, 1);
@@ -197,7 +203,7 @@ namespace PathFinding
 
             if (find_step != 0)
             {
-                Stack<Drowing.Point> way_back = new Stack<Drowing.Point>();
+                Stack<Ppoint> way_back = new Stack<Ppoint>();
                 way_back.Push(draw_copy.Finish_point);
                 int previous_element = draw_copy.Closed_cell[draw_copy.Finish_point.z];
 
@@ -205,11 +211,12 @@ namespace PathFinding
                 {
                     int x = 0, y = 0;
                     Drowing.Reference_to_XY(ref x, ref y, previous_element,draw_copy.NColumnX);
-                    way_back.Push(new Drowing.Point(x,y,previous_element));
+                    way_back.Push(new Ppoint(x,y,previous_element));
                     previous_element = draw_copy.Closed_cell[previous_element];
                 }
                 draw_copy.Anim.draw_way(way_back);
                 form1.update_panel_without_redraw();
+                draw_copy.Show_Step(find_step);
             }
             else
             {
@@ -217,14 +224,14 @@ namespace PathFinding
             }
             draw_copy.Processed_cells = new int[draw_copy.NColumnX * draw_copy.NRowsY];
             draw_copy.Closed_cell = new int[draw_copy.NColumnX * draw_copy.NRowsY];
-            draw_copy.Check_point = new Drowing.Point(-1, -1, -1);
+            draw_copy.Check_point = new Ppoint(-1, -1, -1);
             draw_copy.Step = 1;
             form1.lock_buttons();
             form1.DrawPanel.Enabled = false;
 
         }
 
-        private int hevristic_funct(int x1, int y1, int x2, int y2)
+        private int hevristic_funct(int x1, int y1, int x2, int y2)//Евристична функція для знаходження абсолютної відстані від поточної точки перевірки до фінішної точки
         {
             int hevr_value = 0;
             hevr_value = (Math.Abs(y2 - y1) + Math.Abs(x2 - x1)) * 10;

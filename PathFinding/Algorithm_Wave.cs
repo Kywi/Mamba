@@ -9,24 +9,26 @@ namespace PathFinding
 {
     class Algorithm_Wave
     {
+        //-----------------------------------------Variables
         private Form1 form1;
         private Drowing draw_copy;
-        private Stack<Drowing.Point> front_wave = new Stack<Drowing.Point>();
-        private List<Drowing.Point> future_front = new List<Drowing.Point>();
+        private Stack<Ppoint> front_wave = new Stack<Ppoint>();
+        private List<Ppoint> future_front = new List<Ppoint>();
         private List<min_way> min_Ways = new List<min_way>();
 
         public struct min_way
         {
-            public Drowing.Point point;
+            public Ppoint point;
             public int step;
 
             public min_way(int x, int y, int z, int nstep)
             {
-                point = new Drowing.Point(x, y, z);
+                point = new Ppoint(x, y, z);
                 step = nstep;
             }
             
         }
+        //---------------------------------------------
 
         public Algorithm_Wave(Form1 form1,Drowing draw_copy)
         {
@@ -34,7 +36,7 @@ namespace PathFinding
             this.draw_copy = draw_copy;
         }
 
-        private void Side_checker(Drowing.Point work_cell, string side, int mode = 0)
+        private void Side_checker(Ppoint work_cell, string side, int mode = 0)
         {      
             int _y = 0, _x = 0, _z = 0;
             int x = work_cell.x;
@@ -93,7 +95,7 @@ namespace PathFinding
             {
                 case 0:
                     if (draw_copy.Processed_cells[_z] != 0) return;
-                    future_front.Add(new Drowing.Point(_x, _y, _z));
+                    future_front.Add(new Ppoint(_x, _y, _z));
                     draw_copy.Processed_cells[_z] = draw_copy.Step;
                     break;
                 case 1:
@@ -125,17 +127,18 @@ namespace PathFinding
             draw_copy.Step = 1;
             front_wave.Push(draw_copy.Start_point);
             draw_copy.Processed_cells[draw_copy.Start_point.z] = draw_copy.Step;
-            form1.textBox1.Text =Convert.ToString(draw_copy.Step);
+            form1.textBox1.Text = Convert.ToString(draw_copy.Step);
             form1.visualisation_mode(mode, form1, 1);
             draw_copy.Step++;
+
             while(front_wave.Count != 0)
             {
                 
-                future_front = new List<Drowing.Point>(); ;
+                future_front = new List<Ppoint>(); ;
 
                 while (front_wave.Count != 0)
                 {
-                    Drowing.Point work_cell = front_wave.Pop();
+                    Ppoint work_cell = front_wave.Pop();
                     Side_checker(work_cell, "U");
                     Side_checker(work_cell, "D");
                     Side_checker(work_cell, "L");
@@ -145,7 +148,7 @@ namespace PathFinding
                 future_front.Sort((x, y) => y.z.CompareTo(x.z));
 
                 int zz = -999;
-                foreach(Drowing.Point t_point in future_front)
+                foreach(Ppoint t_point in future_front)
                 {
                     if(t_point.z != zz)
                     {
@@ -159,8 +162,7 @@ namespace PathFinding
                                 front_wave.Clear();
                                 break;
                             }
-                        }
-             
+                        }            
                     }
                 }
                 form1.textBox1.Text = Convert.ToString(draw_copy.Step);
@@ -171,12 +173,12 @@ namespace PathFinding
 
             if (find_step != 0)
             {
-                Stack<Drowing.Point> way_back = new Stack<Drowing.Point>();
+                Stack<Ppoint> way_back = new Stack<Ppoint>();
                 way_back.Push(draw_copy.Finish_point);
 
                 while (way_back.Peek() != draw_copy.Start_point)
                 {
-                    Drowing.Point work_cell = way_back.Peek();
+                    Ppoint work_cell = way_back.Peek();
                     min_Ways.Clear();
 
                     Side_checker(work_cell, "U", 1);
@@ -198,13 +200,14 @@ namespace PathFinding
                 }
                 draw_copy.Anim.draw_way(way_back);
                 form1.update_panel_without_redraw();
+                draw_copy.Show_Step(find_step);
             }
             else
             {
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            }        
             draw_copy.Processed_cells = new int[draw_copy.NColumnX * draw_copy.NRowsY];
-            draw_copy.Check_point = new Drowing.Point(-1, -1, -1);
+            draw_copy.Check_point = new Ppoint(-1, -1, -1);
             draw_copy.Step = 1;
             form1.lock_buttons();
             form1.DrawPanel.Enabled = false;

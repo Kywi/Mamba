@@ -10,11 +10,14 @@ namespace PathFinding
 {
     class Animations
     {
+        //-----------------------------------------Variables
         private Form1 form1;
         private Graphics elemnt_draw;
         private Drowing draw_copy;
         private Bitmap picture;
         private Pen p;
+
+        //------------------------------------------------
 
         public Animations()
         {
@@ -60,8 +63,7 @@ namespace PathFinding
             }
             elemnt_draw.FillRectangle(br, rec);
             p = (type_of_element == 2) ?  new Pen(Color.Orange, 1) :  new Pen(Color.Black, 1);
-
-            
+        
             elemnt_draw.DrawRectangle(p, rec);
             if (type_of_element == 1)
             {
@@ -111,19 +113,18 @@ namespace PathFinding
                 draw_Cells(x, y, 5, circuit);
                 return;
             }
-
             draw_Cells(x, y, 2);
         }
 
-        public void draw_way(Stack<Drowing.Point> points)
+        public void draw_way(Stack<Ppoint> points)
         {
             SolidBrush yellow_br = new SolidBrush(Color.Yellow);
             Pen yellow_pen = new Pen(yellow_br);
-            Drowing.Point previous_point = points.Peek();
+            Ppoint previous_point = points.Peek();
 
             while (points.Count != 0)
             {
-                Drowing.Point temp = points.Pop();
+                Ppoint temp = points.Pop();
                 int x = temp.x * draw_copy.CellSize + draw_copy.CellSize/4;
                 int y = temp.y * draw_copy.CellSize + draw_copy.CellSize / 4;
                 Rectangle rect = new Rectangle(x, y, draw_copy.CellSize / 2, draw_copy.CellSize / 2);
@@ -131,9 +132,9 @@ namespace PathFinding
                 elemnt_draw.FillEllipse(yellow_br,rect);
 
                 elemnt_draw.DrawLine(yellow_pen, previous_point.x * draw_copy.CellSize + draw_copy.CellSize / 2,
-                    previous_point.y * draw_copy.CellSize + draw_copy.CellSize / 2,
-                    temp.x * draw_copy.CellSize + draw_copy.CellSize / 2,
-                    temp.y * draw_copy.CellSize + draw_copy.CellSize / 2);
+                        previous_point.y * draw_copy.CellSize + draw_copy.CellSize / 2,
+                        temp.x * draw_copy.CellSize + draw_copy.CellSize / 2,
+                        temp.y * draw_copy.CellSize + draw_copy.CellSize / 2);
                 previous_point = temp;
             }
 
