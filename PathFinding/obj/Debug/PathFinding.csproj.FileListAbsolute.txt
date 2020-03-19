@@ -1,0 +1,14 @@
+D:\Kyrsova\PathFinding\PathFinding\bin\Debug\PathFinding.exe.config
+D:\Kyrsova\PathFinding\PathFinding\bin\Debug\PathFinding.exe
+D:\Kyrsova\PathFinding\PathFinding\bin\Debug\PathFinding.pdb
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csprojAssemblyReference.cache
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Form1.resources
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Properties.Resources.resources
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.GenerateResource.cache
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.CoreCompileInputs.cache
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.exe
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Labiritnm.resources
+D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Newtonsoft.Json.dll
+D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Newtonsoft.Json.xml
+D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.CopyComplete
