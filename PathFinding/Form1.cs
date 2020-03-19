@@ -452,4 +452,4 @@ namespace PathFinding
 }
 
 
-/* */
+/* NICHOS is not HUMAN */
