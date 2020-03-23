@@ -15,6 +15,7 @@ namespace PathFinding
         private Stack<Ppoint> front_wave = new Stack<Ppoint>();
         private List<Ppoint> future_front = new List<Ppoint>();
         private List<min_way> min_Ways = new List<min_way>();
+        private List<string> Mas_OF_sides;
 
         public struct min_way
         {
@@ -34,6 +35,15 @@ namespace PathFinding
         {
             this.form1 = form1;
             this.draw_copy = draw_copy;
+
+            Mas_OF_sides.Add("U");
+            Mas_OF_sides.Add("D");
+            Mas_OF_sides.Add("L");
+            Mas_OF_sides.Add("R");
+            Mas_OF_sides.Add("LU");
+            Mas_OF_sides.Add("LD");
+            Mas_OF_sides.Add("RU");
+            Mas_OF_sides.Add("RD");
         }
 
         private void Side_checker(Ppoint work_cell, string side, int mode = 0)
@@ -139,10 +149,10 @@ namespace PathFinding
                 while (front_wave.Count != 0)
                 {
                     Ppoint work_cell = front_wave.Pop();
-                    Side_checker(work_cell, "U");
-                    Side_checker(work_cell, "D");
-                    Side_checker(work_cell, "L");
-                    Side_checker(work_cell, "R");
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Side_checker(work_cell, Mas_OF_sides[i]);
+                    }
                 }
 
                 future_front.Sort((x, y) => y.z.CompareTo(x.z));
@@ -181,17 +191,17 @@ namespace PathFinding
                     Ppoint work_cell = way_back.Peek();
                     min_Ways.Clear();
 
-                    Side_checker(work_cell, "U", 1);
-                    Side_checker(work_cell, "D", 1);
-                    Side_checker(work_cell, "L", 1);
-                    Side_checker(work_cell, "R", 1);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Side_checker(work_cell, Mas_OF_sides[i], 1);
+                    }
 
                     if (form1.checkBox2.Checked)
                     {
-                        Side_checker(work_cell, "LU", 1);
-                        Side_checker(work_cell, "LD", 1);
-                        Side_checker(work_cell, "RU", 1);
-                        Side_checker(work_cell, "RD", 1);
+                        for (int i = 4; i < 8; i++)
+                        {
+                            Side_checker(work_cell, Mas_OF_sides[i], 1);
+                        }
                     }
 
                     min_Ways.Sort((x, y) => x.step.CompareTo(y.step));

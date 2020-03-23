@@ -15,6 +15,7 @@ namespace PathFinding
         private Stack<Ppoint> chain_cells = new Stack<Ppoint>();
         private Ppoint temp;
         private List<neibours> neibor = new List<neibours>();
+        private List<char> Mas_OF_sides;
 
         struct neibours
         {
@@ -34,6 +35,11 @@ namespace PathFinding
         {
             this.draw_copy = draw_copy;
             this.form1 = form1;
+
+            Mas_OF_sides.Add('U');
+            Mas_OF_sides.Add('D');
+            Mas_OF_sides.Add('L');
+            Mas_OF_sides.Add('R');
         }
 
         public void init_mas()
@@ -98,10 +104,11 @@ namespace PathFinding
                 temp = chain_cells.Peek();
                 draw_copy.Check_point = temp;
                 neibor.Clear();
-                check_neibours(temp.x, temp.y, 'U');
-                check_neibours(temp.x, temp.y, 'D');
-                check_neibours(temp.x, temp.y, 'L');
-                check_neibours(temp.x, temp.y, 'R');
+                foreach (char tem in Mas_OF_sides)
+
+                {
+                    check_neibours(temp.x, temp.y, tem);
+                }
                 if (neibor.Count == 0)
                 {
                     chain_cells.Pop();

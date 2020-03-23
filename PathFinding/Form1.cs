@@ -17,10 +17,11 @@ namespace PathFinding
             InitializeComponent();
         }
 
-        //-------------Global variables
+        //-----------------------------------------------------------------------------------------------Global variables
         int a = 0;
         private int y;
-        private int flag_radioButtons, time_delay;
+        private int flag_radioButtons;
+        private int time_delay;
         private int x;
         private Drowing draw;
         private Thread demostr;
@@ -39,7 +40,7 @@ namespace PathFinding
         public List<Button> Buttons_list { get => buttons_list; set => buttons_list = value; }
         public List<NumericUpDown> NumericUpDowns_list { get => numericUpDowns_list; set => numericUpDowns_list = value; }
 
-        //--------------
+        //-----------------------------------------------------------------------------------------------------------------
 
 
         //--------------------------------------------------------FORM1 settings
@@ -69,9 +70,6 @@ namespace PathFinding
             e.Graphics.DrawLine(pen, radioButton1.Location.X + radioButton1.Width + 10, panel1.Height - 5, radioButton1.Location.X + radioButton1.Width + 10, 5);
             e.Graphics.DrawLine(pen, button5.Location.X + button5.Width + 10, panel1.Height - label10.Height - 5, button5.Location.X + button5.Width + 10, 5);
             e.Graphics.DrawLine(pen, button7.Location.X + button7.Width + 10, panel1.Height - 5, button7.Location.X + button7.Width + 10, 5);
-
-
-
         }
         //--------------------------------------------------------------------------------
 
@@ -275,6 +273,7 @@ namespace PathFinding
                 buttons_list.Add(button3);
                 buttons_list.Add(button4);
                 buttons_list.Add(button5);
+                buttons_list.Add(button6);
                 buttons_list.Add(button7);
 
             NumericUpDowns_list = new List<NumericUpDown>();
@@ -480,4 +479,5 @@ namespace PathFinding
 }
 
 
-/* NICHOS is not HUMAN */
+/* ARIAN RASE is HUMAN
+   NIGROS is not HUMAN */

@@ -13,7 +13,8 @@ namespace PathFinding
         private Form1 form1;
         private Drowing draw_copy;
         private List<struct_open_cell> open_Cells = new List<struct_open_cell>();
-        
+        private List<string> Mas_OF_sides;
+
         struct struct_open_cell
         {
             public Ppoint point;
@@ -35,6 +36,16 @@ namespace PathFinding
         {
             this.draw_copy = draw_copy;
             this.form1 = form1;
+            Mas_OF_sides = new List<string>();
+
+            Mas_OF_sides.Add("U");
+            Mas_OF_sides.Add("D");
+            Mas_OF_sides.Add("L");
+            Mas_OF_sides.Add("R");
+            Mas_OF_sides.Add("LU");
+            Mas_OF_sides.Add("LD");
+            Mas_OF_sides.Add("RU");
+            Mas_OF_sides.Add("RD");
         }
 
         private void Side_checker(struct_open_cell work_cell, string side)
@@ -115,8 +126,8 @@ namespace PathFinding
             int index_result = open_Cells.FindIndex(cell => cell.point.z.Equals(_z));
             if (index_result == -1)
             {
-                open_Cells.Add(new struct_open_cell(_x, _y, _z, 0, _h, _h, work_cell.point));
-                draw_copy.Processed_cells[_z] = draw_copy.Step;
+                 open_Cells.Add(new struct_open_cell(_x, _y, _z, 0, _h, _h, work_cell.point));
+                 draw_copy.Processed_cells[_z] = draw_copy.Step;
             }
             else
             {
@@ -169,17 +180,17 @@ namespace PathFinding
                 draw_copy.Closed_cell[work_cell.point.z] = work_cell.parent_cell.z;
                 draw_copy.Check_point = work_cell.point;
 
-                Side_checker(work_cell, "U");
-                Side_checker(work_cell, "D");
-                Side_checker(work_cell, "L");
-                Side_checker(work_cell, "R");
+                for (int i = 0; i < 4; i++)
+                {
+                    Side_checker(work_cell, Mas_OF_sides[i]);
+                }
 
                 if (form1.checkBox2.Checked)
                 {
-                    Side_checker(work_cell, "LU");
-                    Side_checker(work_cell, "LD");
-                    Side_checker(work_cell, "RU");
-                    Side_checker(work_cell, "RD");
+                    for (int i = 4; i < 8; i++)
+                    {
+                        Side_checker(work_cell, Mas_OF_sides[i]);
+                    }
                 }
                 if ((draw_copy.Closed_cell[draw_copy.Finish_point.z] != 0) && (draw_copy.Step != 2))
                 {
