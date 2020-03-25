@@ -175,6 +175,7 @@ namespace PathFinding
                     temp = JsonConvert.DeserializeObject<Drowing>(ser);
                     cColunm_X.Value = temp.NColumnX;
                     cRows_Y.Value = temp.NRowsY;
+                    
                     Draw = temp;
                     Draw.Form1 = this;
                     DrawPanel.Load();
@@ -194,6 +195,7 @@ namespace PathFinding
 
         private void button7_Click(object sender, EventArgs e)
         {
+            DrawPanel.Enabled = true;
             switch (comboBox2.SelectedIndex)
             {
                 case 0:
@@ -207,6 +209,7 @@ namespace PathFinding
 
         private void button5_Click(object sender, EventArgs e)
         {
+            DrawPanel.Enabled = true;
             switch(comboBox1.SelectedIndex)
             {
                 case 0:
@@ -242,6 +245,11 @@ namespace PathFinding
             A = 3;
             DrawPanel.Enabled = true;
             DrawPanel.Invalidate();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
         //-----------------------------------------------------------
 
@@ -314,7 +322,7 @@ namespace PathFinding
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             trackBar1.Enabled = false;
-            button9.Enabled = false;
+           // button9.Enabled = false;
             if (radioButton1.Checked) Flag_radioButtons = 1;
             else if (radioButton2.Checked)
             {
@@ -374,7 +382,7 @@ namespace PathFinding
         {
             foreach(RadioButton radioButton in radiobuttons_list)
             {
-                radioButton.Enabled = !radioButton.Enabled;
+           //     radioButton.Enabled = !radioButton.Enabled;
             }
 
             foreach(Button button in buttons_list)
@@ -431,7 +439,6 @@ namespace PathFinding
             DrawPanel.Update();
             lock_buttons();
             Generation_Interface generation_By_Dividon = new Generation_By_Dividon(this, draw);
-            generation_By_Dividon.init_mas();
             Demostr = new Thread(() =>
             {
                 generation_By_Dividon.create_Labyrithm();
@@ -465,7 +472,6 @@ namespace PathFinding
             DrawPanel.Update();
             lock_buttons();
             Generation_Interface deep_generation = new GenerationAI(this, Draw);
-            deep_generation.init_mas();
             Demostr = new Thread(() =>
             {
                 deep_generation.create_Labyrithm();
@@ -473,11 +479,11 @@ namespace PathFinding
             demostr.Start();
         }
 
+
         //---------------------------------------------------------
 
     }
 }
 
 
-/* ARIAN RASE is HUMAN
-   NIGROS is not HUMAN */
+

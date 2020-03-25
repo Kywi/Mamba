@@ -8,8 +8,6 @@ namespace PathFinding
 {
     interface Generation_Interface
     {
-        void init_mas();
-
         void create_Labyrithm();
     }
 }

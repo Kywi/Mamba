@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace PathFinding
 {
-    class GenerationAI : Generation_Interface
+    class GenerationAI : Generation,  Generation_Interface
     {
         //-----------------------------------------Variables
-        private Form1 form1;
-        private Drowing draw_copy;
         private Stack<Ppoint> chain_cells = new Stack<Ppoint>();
         private Ppoint temp;
         private List<neibours> neibor = new List<neibours>();
-        private List<char> Mas_OF_sides;
 
         struct neibours
         {
@@ -31,18 +28,10 @@ namespace PathFinding
 
         //------------------------------------------------
 
-        public GenerationAI(Form1 form1, Drowing draw_copy)
-        {
-            this.draw_copy = draw_copy;
-            this.form1 = form1;
+        public GenerationAI(Form1 form1, Drowing draw_copy) : base(form1, draw_copy) { }
+     
 
-            Mas_OF_sides.Add('U');
-            Mas_OF_sides.Add('D');
-            Mas_OF_sides.Add('L');
-            Mas_OF_sides.Add('R');
-        }
-
-        public void init_mas()
+        protected override void init_mas()
         {
             draw_copy.init_drowing(2);
             for (int i = 0; i < draw_copy.NColumnX; i++)
@@ -86,9 +75,9 @@ namespace PathFinding
             neibor.Add(new neibours(new Ppoint(_x,_y,_z), side));
         }
         
-        public void create_Labyrithm()
+        public override void create_Labyrithm()
         {
-            int mode = form1.Flag_radioButtons;
+            init_mas();   
             draw_copy.Step = 2;
             Random rand = new Random();
             temp = new Ppoint(1, 1, Drowing.Absol_Coord(1, 1, draw_copy.NColumnX));
@@ -101,6 +90,7 @@ namespace PathFinding
             
             while (chain_cells.Count != 0)
             {
+                Mode = form1.Flag_radioButtons;
                 temp = chain_cells.Peek();
                 draw_copy.Check_point = temp;
                 neibor.Clear();
@@ -146,14 +136,7 @@ namespace PathFinding
                 draw_copy.Step++;
 
             }
-            draw_copy.Processed_cells = new int[draw_copy.NColumnX * draw_copy.NRowsY];
-            draw_copy.Check_point = new Ppoint(-1, -1, -1);
-            draw_copy.Step = 1;
-            
-            form1.update_screen();
-            form1.lock_buttons();
-            form1.DrawPanel.Enabled = true;
-
+            Reset_values();
         }
     }
 }

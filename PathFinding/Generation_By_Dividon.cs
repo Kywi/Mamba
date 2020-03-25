@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace PathFinding
 {
-    class Generation_By_Dividon : Generation_Interface
+    class Generation_By_Dividon : Generation, Generation_Interface
     {
         //----------------------------------------------------Variables
 
-        private Form1 form1;
-        private Drowing draw_copy;
         private Stack<rect_point> Rect_Points = new Stack<rect_point>();
         private rect_point temp;
 
@@ -42,20 +40,17 @@ namespace PathFinding
 
         //-------------------------------------------------------------
 
-        public Generation_By_Dividon(Form1 form1,Drowing draw_copy)
-        {
-            this.form1 = form1;
-            this.draw_copy = draw_copy;
-        }
+        public Generation_By_Dividon(Form1 form1, Drowing draw_copy) : base(form1, draw_copy) { }
+  
 
-        public void init_mas()
+        protected override void init_mas()
         {
             draw_copy.init_drowing(2);
         }
 
-        public void create_Labyrithm()
+        public override void create_Labyrithm()
         {
-            int mode = form1.Flag_radioButtons;
+            init_mas();
             Random rx = new Random();
             Random ry = new Random();
             Rect_Points.Push(new rect_point(0, 0, draw_copy.NColumnX - 1, draw_copy.NRowsY - 1));
@@ -63,6 +58,7 @@ namespace PathFinding
 
             while (Rect_Points.Count != 0)
             {
+                Mode = form1.Flag_radioButtons;
                 temp = Rect_Points.Pop();
                 int X_Numb_of_dividion, Y_Numb_of_dividion;
                 X_Numb_of_dividion = (temp.P2.x - temp.P1.x) / 2 - 1;
@@ -97,10 +93,10 @@ namespace PathFinding
                 form1.visualisation_mode(mode, form1, 1);
 
                 List<hole> h = new List<hole>();
-                h.Add(new hole((y0 - temp.P1.y) / 2, 'U'));
-                h.Add(new hole((temp.P2.y - y0) / 2, 'D'));
-                h.Add(new hole((x0 - temp.P1.x) / 2, 'L'));
-                h.Add(new hole((temp.P2.x - x0) / 2, 'R'));
+                h.Add(new hole((y0 - temp.P1.y) / 2, Mas_OF_sides[0]));
+                h.Add(new hole((temp.P2.y - y0) / 2, Mas_OF_sides[1]));
+                h.Add(new hole((x0 - temp.P1.x) / 2, Mas_OF_sides[2]));
+                h.Add(new hole((temp.P2.x - x0) / 2, Mas_OF_sides[3]));
 
                 if (flag_reverse)
                 {
@@ -137,10 +133,7 @@ namespace PathFinding
                 form1.visualisation_mode(mode, form1, 1);
                 flag_reverse = !flag_reverse;
             }
-            draw_copy.Step = 1;
-            form1.update_screen();
-            form1.lock_buttons();
-            form1.DrawPanel.Enabled = true;
+            Reset_values();
         }
     }
 }

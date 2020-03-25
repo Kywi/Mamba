@@ -71,6 +71,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generation.cs" />
     <Compile Include="GenerationAI.cs" />
     <Compile Include="Generation_By_Dividon.cs" />
     <Compile Include="Generation_Interface.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Labiritnm.Designer.cs">
       <DependentUpon>Labiritnm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PathFind.cs" />
     <Compile Include="Ppoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

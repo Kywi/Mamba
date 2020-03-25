@@ -7,13 +7,11 @@ using System.Windows.Forms;
 
 namespace PathFinding
 {
-    class Algorithm_A
+    class Algorithm_A : PathFind 
     {
         //-----------------------------------------Variables
-        private Form1 form1;
-        private Drowing draw_copy;
+
         private List<struct_open_cell> open_Cells = new List<struct_open_cell>();
-        private List<string> Mas_OF_sides;
 
         struct struct_open_cell
         {
@@ -32,21 +30,7 @@ namespace PathFinding
         }
         //-----------------------------------------------
 
-        public Algorithm_A(Form1 form1, Drowing draw_copy)
-        {
-            this.draw_copy = draw_copy;
-            this.form1 = form1;
-            Mas_OF_sides = new List<string>();
-
-            Mas_OF_sides.Add("U");
-            Mas_OF_sides.Add("D");
-            Mas_OF_sides.Add("L");
-            Mas_OF_sides.Add("R");
-            Mas_OF_sides.Add("LU");
-            Mas_OF_sides.Add("LD");
-            Mas_OF_sides.Add("RU");
-            Mas_OF_sides.Add("RD");
-        }
+        public Algorithm_A(Form1 form1, Drowing draw_copy) : base(form1, draw_copy) { }
 
         private void Side_checker(struct_open_cell work_cell, string side)
         {
@@ -126,7 +110,7 @@ namespace PathFinding
             int index_result = open_Cells.FindIndex(cell => cell.point.z.Equals(_z));
             if (index_result == -1)
             {
-                 open_Cells.Add(new struct_open_cell(_x, _y, _z, 0, _h, _h, work_cell.point));
+                 open_Cells.Add(new struct_open_cell(_x, _y, _z, g, _h, _f, work_cell.point));
                  draw_copy.Processed_cells[_z] = draw_copy.Step;
             }
             else
@@ -142,7 +126,7 @@ namespace PathFinding
             }
         }
 
-        public void Path_Finding()
+        public override void Path_Finding()
         {
             if (draw_copy.Start_point.z == -1 || draw_copy.Finish_point.z == -1)
             {
@@ -150,30 +134,14 @@ namespace PathFinding
                 form1.lock_buttons();
                 return;
             }
-            int mode = form1.Flag_radioButtons;
+          
             int find_step = 0;
-            draw_copy.Step = 1;
-            draw_copy.Processed_cells[draw_copy.Start_point.z] = draw_copy.Step;
-            form1.textBox1.Text = Convert.ToString(draw_copy.Step);
-            form1.visualisation_mode(mode, form1, 1);
-            draw_copy.Step++;
 
-            for (int i = 0; i < (draw_copy.NRowsY * draw_copy.NColumnX); i++)
-            {
-                if (draw_copy.Map[i])
-                {
-                    draw_copy.Processed_cells[i] = -1;
-                    draw_copy.Closed_cell[i] = -1;
-                }
-            }
-            int _h = hevristic_funct(draw_copy.Start_point.x, draw_copy.Start_point.y, draw_copy.Finish_point.x, draw_copy.Finish_point.y);
-
-            open_Cells.Add(new struct_open_cell(draw_copy.Start_point.x, draw_copy.Start_point.y,
-                draw_copy.Start_point.z, 0, _h, _h, draw_copy.Start_point));
-
+            First_Step();
             bool flag_find_step = true;
             while(open_Cells.Count != 0)
             {
+                Mode = form1.Flag_radioButtons;
                 open_Cells.Sort((x, y) => x.F.CompareTo(y.F));
                 struct_open_cell work_cell = open_Cells[0];
                 open_Cells.RemoveAt(0);
@@ -201,13 +169,13 @@ namespace PathFinding
                     }
                     if (form1.checkBox1.Checked)
                     {
-                        form1.visualisation_mode(mode, form1, 1);
+                        form1.visualisation_mode(Mode, form1, 1);
                         open_Cells.Clear();
                         break;
                     }
                 }
                 form1.textBox1.Text = Convert.ToString(draw_copy.Step);
-                form1.visualisation_mode(mode, form1, 1);
+                form1.visualisation_mode(Mode, form1, 1);
                 draw_copy.Step++;
 
             }
@@ -233,13 +201,31 @@ namespace PathFinding
             {
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            draw_copy.Processed_cells = new int[draw_copy.NColumnX * draw_copy.NRowsY];
-            draw_copy.Closed_cell = new int[draw_copy.NColumnX * draw_copy.NRowsY];
-            draw_copy.Check_point = new Ppoint(-1, -1, -1);
-            draw_copy.Step = 1;
-            form1.lock_buttons();
-            form1.DrawPanel.Enabled = false;
 
+            Reset_Values();
+
+        }
+
+        protected override void First_Step()
+        {
+            draw_copy.Step = 1;
+            draw_copy.Processed_cells[draw_copy.Start_point.z] = draw_copy.Step;
+            form1.textBox1.Text = Convert.ToString(draw_copy.Step);
+            form1.visualisation_mode(Mode, form1, 1);
+            draw_copy.Step++;
+
+            for (int i = 0; i < (draw_copy.NRowsY * draw_copy.NColumnX); i++)
+            {
+                if (draw_copy.Map[i])
+                {
+                    draw_copy.Processed_cells[i] = -1;
+                    draw_copy.Closed_cell[i] = -1;
+                }
+            }
+            int _h = hevristic_funct(draw_copy.Start_point.x, draw_copy.Start_point.y, draw_copy.Finish_point.x, draw_copy.Finish_point.y);
+
+            open_Cells.Add(new struct_open_cell(draw_copy.Start_point.x, draw_copy.Start_point.y,
+                draw_copy.Start_point.z, 0, _h, _h, draw_copy.Start_point));
         }
 
         private int hevristic_funct(int x1, int y1, int x2, int y2)//Евристична функція для знаходження абсолютної відстані від поточної точки перевірки до фінішної точки
