@@ -152,7 +152,7 @@ namespace PathFinding
             }
             Start_point  = new Ppoint(-1, -1, -1);
             Finish_point = new Ppoint(-1, -1, -1);
-             Form1.DrawPanel.Load();
+            Form1.DrawPanel.Image = new Bitmap(Form1.DrawPanel.Width, Form1.DrawPanel.Height);
             Anim = new Animations(Form1, this);
             map_new_labir();
             Anim.reDraw_Screen();

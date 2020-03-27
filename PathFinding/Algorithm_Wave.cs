@@ -107,11 +107,12 @@ namespace PathFinding
             if(draw_copy.Start_point.z == -1 || draw_copy.Finish_point.z == -1)
             {
                 MessageBox.Show("Встановіть старт та фініш", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                form1.Hide_load_form();
                 form1.lock_buttons();
                 return;
             }
             int find_step = 0;
-
+            form1.Show_load_form();
             First_Step();
 
             while(front_wave.Count != 0)
@@ -190,7 +191,8 @@ namespace PathFinding
             {
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            Reset_Values();
+            form1.Hide_load_form();
+            Reset_Values();   
         }
 
         protected override void First_Step()

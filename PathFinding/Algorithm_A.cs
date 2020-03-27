@@ -132,11 +132,12 @@ namespace PathFinding
             {
                 MessageBox.Show("Встановіть старт та фініш", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 form1.lock_buttons();
+                form1.Hide_load_form();
                 return;
             }
           
-            int find_step = 0;
-
+            int find_step = 0;        
+          
             First_Step();
             bool flag_find_step = true;
             while(open_Cells.Count != 0)
@@ -194,16 +195,16 @@ namespace PathFinding
                     previous_element = draw_copy.Closed_cell[previous_element];
                 }
                 draw_copy.Anim.draw_way(way_back);
-                form1.update_panel_without_redraw();
+                form1.update_panel_without_redraw();    
                 draw_copy.Show_Step(find_step);
             }
             else
             {
+                form1.Hide_load_form();
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
+            }   
             Reset_Values();
-
+            form1.Hide_load_form();
         }
 
         protected override void First_Step()

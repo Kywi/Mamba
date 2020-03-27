@@ -28,7 +28,8 @@ namespace PathFinding
         private List<RadioButton> radiobuttons_list;
         private List<Button> buttons_list;
         private List<NumericUpDown> numericUpDowns_list;
-
+        private Load_Form form_progres;
+   
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
         public int A { get => a; set => a = value; }
@@ -39,6 +40,8 @@ namespace PathFinding
         public List<RadioButton> Radiobuttons_list { get => radiobuttons_list; set => radiobuttons_list = value; }
         public List<Button> Buttons_list { get => buttons_list; set => buttons_list = value; }
         public List<NumericUpDown> NumericUpDowns_list { get => numericUpDowns_list; set => numericUpDowns_list = value; }
+        public Load_Form Form_progres { get => form_progres; set => form_progres = value; }
+
 
         //-----------------------------------------------------------------------------------------------------------------
 
@@ -47,10 +50,8 @@ namespace PathFinding
         private void Form1_Load(object sender, EventArgs e)
         {
             basic_sizes_AND_settings();
-            DrawPanel.ImageLocation = "1920x1080-white-solid-color-background.jpg";
-            Draw = new Drowing(this);
-            Draw.init_drowing(1);
-            Flag_radioButtons = 1;
+            Teory teory_Form = new Teory();
+            teory_Form.ShowDialog();
         }
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
@@ -159,50 +160,21 @@ namespace PathFinding
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string ser = "";
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    if (openFileDialog1.FileName == null) return;
-                    BinaryReader fin = new BinaryReader(new FileStream(openFileDialog1.FileName, FileMode.Open));
-                    while (fin.BaseStream.Position != fin.BaseStream.Length)
-                    {
-                        ser = fin.ReadString();
-                    }
-                    fin.Close();
-                    Drowing temp = new Drowing(this);
-                    temp = JsonConvert.DeserializeObject<Drowing>(ser);
-                    cColunm_X.Value = temp.NColumnX;
-                    cRows_Y.Value = temp.NRowsY;
-                    
-                    Draw = temp;
-                    Draw.Form1 = this;
-                    DrawPanel.Load();
-                    Draw.Anim = new Animations(this, Draw);
-                    A = 3;
-                    DrawPanel.Invalidate();
-                }
-            }catch(IOException x)
-            {
-                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                A = 1;
-                DrawPanel.Invalidate();
-                DrawPanel.Update();
-            }
-
+            Upload_Form upload = new Upload_Form(this);
+            upload.ShowDialog();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             DrawPanel.Enabled = true;
+
             switch (comboBox2.SelectedIndex)
             {
                 case 0:
-                    Dividion();
-                    break;
-                case 1:
                     Deep_Generation();
+                    break;
+                case 1:                 
+                    Dividion();
                     break;
             }
         }
@@ -210,6 +182,7 @@ namespace PathFinding
         private void button5_Click(object sender, EventArgs e)
         {
             DrawPanel.Enabled = true;
+            Show_load_form();
             switch(comboBox1.SelectedIndex)
             {
                 case 0:
@@ -217,6 +190,9 @@ namespace PathFinding
                     break;
                 case 1:
                     A_star();
+                    break;
+                case 2:
+                    Best_First_Search();
                     break;
             }
         }
@@ -257,10 +233,15 @@ namespace PathFinding
         //-----------------------------------------------------------Some_functions
         private void basic_sizes_AND_settings()
         {
-            panel1.Width = this.Width;
+            Draw = new Drowing(this);
+            Draw.init_drowing(1);
+            Flag_radioButtons = 1;
+            Form_progres = new Load_Form();
 
-            DrawPanel.Width = this.Width - 16;
-            DrawPanel.Height = this.Height - 150;
+            //panel1.Width = this.Width;
+
+            // DrawPanel.Width = this.Width - 16;
+            //  DrawPanel.Height = this.Height - 150;
 
             size_cell.Maximum = Math.Min(DrawPanel.Width, DrawPanel.Height);
 
@@ -281,7 +262,7 @@ namespace PathFinding
                 buttons_list.Add(button3);
                 buttons_list.Add(button4);
                 buttons_list.Add(button5);
-                buttons_list.Add(button6);
+                
                 buttons_list.Add(button7);
 
             NumericUpDowns_list = new List<NumericUpDown>();
@@ -318,6 +299,62 @@ namespace PathFinding
                 }
             }
         }   
+
+        public void Read_from_File()
+        {
+            try
+            {
+                string ser = "";
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if (openFileDialog1.FileName == null) return;
+                    BinaryReader fin = new BinaryReader(new FileStream(openFileDialog1.FileName, FileMode.Open));
+                    while (fin.BaseStream.Position != fin.BaseStream.Length)
+                    {
+                        ser = fin.ReadString();
+                    }
+                    fin.Close();
+                    Drowing temp = new Drowing(this);
+                    temp = JsonConvert.DeserializeObject<Drowing>(ser);
+                    cColunm_X.Value = temp.NColumnX;
+                    cRows_Y.Value = temp.NRowsY;
+
+                    Draw = temp;
+                    Draw.Form1 = this;
+                    DrawPanel.Image = new Bitmap(DrawPanel.Width, DrawPanel.Height);
+                    Draw.Anim = new Animations(this, Draw);
+                    A = 3;
+                    DrawPanel.Invalidate();
+                }
+            }
+            catch (IOException x)
+            {
+                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                A = 1;
+                DrawPanel.Invalidate();
+                DrawPanel.Update();
+            }
+        }
+
+        public void Load_From_Image()
+        {
+            try
+            {
+
+                if (openFileDialog2.ShowDialog() == DialogResult.OK)
+                {
+                    Recognition_pict recognition = new Recognition_pict(this, draw);
+                    recognition.recogn_Picture(openFileDialog2.FileName.ToString());
+                }
+            }
+            catch (IOException x)
+            {
+                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                A = 1;
+                DrawPanel.Invalidate();
+                DrawPanel.Update();
+            }
+        }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -380,11 +417,6 @@ namespace PathFinding
 
         public void lock_buttons()
         {
-            foreach(RadioButton radioButton in radiobuttons_list)
-            {
-           //     radioButton.Enabled = !radioButton.Enabled;
-            }
-
             foreach(Button button in buttons_list)
             {
                 button.Enabled = !button.Enabled;
@@ -409,7 +441,7 @@ namespace PathFinding
             update_screen();
             DrawPanel.Update();
             lock_buttons();
-            Algorithm_Wave algorithm_Wave = new Algorithm_Wave(this, Draw);
+            PathFind_Int algorithm_Wave = new Algorithm_Wave(this, Draw);
 
             Demostr = new Thread(() =>
             {
@@ -423,11 +455,25 @@ namespace PathFinding
             update_screen();
             DrawPanel.Update();
             lock_buttons();
-            Algorithm_A algorithm_A = new Algorithm_A(this, Draw);
+            PathFind_Int algorithm_A = new Algorithm_A(this, Draw);
 
             Demostr = new Thread(() =>
             {
                 algorithm_A.Path_Finding();
+            });
+            demostr.Start();
+        }
+
+        private void Best_First_Search()
+        {
+            update_screen();
+            DrawPanel.Update();
+            lock_buttons();
+            PathFind_Int Best_F = new Algorithm_Best_F(this, Draw);
+
+            Demostr = new Thread(() =>
+            {
+                Best_F.Path_Finding();
             });
             demostr.Start();
         }
@@ -448,21 +494,7 @@ namespace PathFinding
 
         private void button6_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-
-                if (openFileDialog2.ShowDialog() == DialogResult.OK)
-                {
-                    Recognition_pict recognition = new Recognition_pict(this, draw);
-                    recognition.recogn_Picture(openFileDialog2.FileName.ToString());
-                }
-            }catch(IOException x)
-            {
-                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                A = 1;
-                DrawPanel.Invalidate();
-                DrawPanel.Update();
-            }
+           
         }
 
         private void Deep_Generation()
@@ -479,6 +511,26 @@ namespace PathFinding
             demostr.Start();
         }
 
+        public void Hide_load_form()
+        {
+            if (radioButton1.Checked)
+            {
+                radioButton2.Enabled = true;
+                radioButton3.Enabled = true;
+                Form_progres.Hide();
+            }
+
+        }
+
+        public void Show_load_form()
+        {
+            if (radioButton1.Checked)
+            {
+                radioButton2.Enabled = false;
+                radioButton3.Enabled = false;
+                Form_progres.Show();
+            }
+        }
 
         //---------------------------------------------------------
 
