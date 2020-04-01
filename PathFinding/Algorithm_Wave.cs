@@ -106,8 +106,8 @@ namespace PathFinding
 
             if(draw_copy.Start_point.z == -1 || draw_copy.Finish_point.z == -1)
             {
-                MessageBox.Show("Встановіть старт та фініш", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 form1.Hide_load_form();
+                MessageBox.Show("Встановіть старт та фініш", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 form1.lock_buttons();
                 return;
             }
@@ -185,13 +185,14 @@ namespace PathFinding
                 }
                 draw_copy.Anim.draw_way(way_back);
                 form1.update_panel_without_redraw();
+                form1.Hide_load_form();
                 draw_copy.Show_Step(find_step);
             }
             else
             {
+                form1.Hide_load_form();
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            form1.Hide_load_form();
             Reset_Values();   
         }
 

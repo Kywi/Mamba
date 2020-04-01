@@ -181,6 +181,7 @@ namespace PathFinding
 
             }
 
+            form1.textBox1.Text = Convert.ToString(draw_copy.Step);
             if (find_step != 0)
             {
                 Stack<Ppoint> way_back = new Stack<Ppoint>();
@@ -195,7 +196,8 @@ namespace PathFinding
                     previous_element = draw_copy.Closed_cell[previous_element];
                 }
                 draw_copy.Anim.draw_way(way_back);
-                form1.update_panel_without_redraw();    
+                form1.update_panel_without_redraw();
+                form1.Hide_load_form();
                 draw_copy.Show_Step(find_step);
             }
             else
@@ -204,7 +206,7 @@ namespace PathFinding
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }   
             Reset_Values();
-            form1.Hide_load_form();
+           
         }
 
         protected override void First_Step()

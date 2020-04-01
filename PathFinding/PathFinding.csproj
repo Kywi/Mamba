@@ -76,12 +76,6 @@
     <Compile Include="GenerationAI.cs" />
     <Compile Include="Generation_By_Dividon.cs" />
     <Compile Include="Generation_Interface.cs" />
-    <Compile Include="Labiritnm.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Labiritnm.Designer.cs">
-      <DependentUpon>Labiritnm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Load_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +87,7 @@
     <Compile Include="Ppoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Read_Write_F.cs" />
     <Compile Include="Recognition_pict.cs" />
     <Compile Include="Teory.cs">
       <SubType>Form</SubType>
@@ -108,9 +103,6 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Labiritnm.resx">
-      <DependentUpon>Labiritnm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Load_Form.resx">
       <DependentUpon>Load_Form.cs</DependentUpon>
@@ -131,6 +123,7 @@
     <EmbeddedResource Include="Upload_Form.resx">
       <DependentUpon>Upload_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

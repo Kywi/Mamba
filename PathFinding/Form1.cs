@@ -153,8 +153,8 @@ namespace PathFinding
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if (saveFileDialog1.FileName == null) return;
-                string s = JsonConvert.SerializeObject(Draw);
-                write_to_file(saveFileDialog1.FileName, s);
+                Read_Write_F read_Write_ = new Read_Write_F(this);
+                read_Write_.write_to_file(saveFileDialog1.FileName);
             }
         }
 
@@ -302,37 +302,11 @@ namespace PathFinding
 
         public void Read_from_File()
         {
-            try
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string ser = "";
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    if (openFileDialog1.FileName == null) return;
-                    BinaryReader fin = new BinaryReader(new FileStream(openFileDialog1.FileName, FileMode.Open));
-                    while (fin.BaseStream.Position != fin.BaseStream.Length)
-                    {
-                        ser = fin.ReadString();
-                    }
-                    fin.Close();
-                    Drowing temp = new Drowing(this);
-                    temp = JsonConvert.DeserializeObject<Drowing>(ser);
-                    cColunm_X.Value = temp.NColumnX;
-                    cRows_Y.Value = temp.NRowsY;
-
-                    Draw = temp;
-                    Draw.Form1 = this;
-                    DrawPanel.Image = new Bitmap(DrawPanel.Width, DrawPanel.Height);
-                    Draw.Anim = new Animations(this, Draw);
-                    A = 3;
-                    DrawPanel.Invalidate();
-                }
-            }
-            catch (IOException x)
-            {
-                MessageBox.Show("Файл пошкоджено! Оберіть інший файл.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                A = 1;
-                DrawPanel.Invalidate();
-                DrawPanel.Update();
+                if (openFileDialog1.FileName == null) return;
+                Read_Write_F read_Write_ = new Read_Write_F(this);
+                read_Write_.Read_From_file(openFileDialog1.FileName);
             }
         }
 

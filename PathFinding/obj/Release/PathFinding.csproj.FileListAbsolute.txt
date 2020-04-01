@@ -2,7 +2,6 @@ D:\Kyrsova\PathFinding\PathFinding\bin\Release\PathFinding.exe.config
 D:\Kyrsova\PathFinding\PathFinding\bin\Release\PathFinding.exe
 D:\Kyrsova\PathFinding\PathFinding\bin\Release\PathFinding.pdb
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Form1.resources
-D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Labiritnm.resources
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Properties.Resources.resources
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.csproj.GenerateResource.cache
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.csproj.CoreCompileInputs.cache
@@ -41,3 +40,6 @@ D:\Kyrsova\PathFinding\PathFinding\bin\Release\sv\ZedGraph.resources.dll
 D:\Kyrsova\PathFinding\PathFinding\bin\Release\tr\ZedGraph.resources.dll
 D:\Kyrsova\PathFinding\PathFinding\bin\Release\zh-cn\ZedGraph.resources.dll
 D:\Kyrsova\PathFinding\PathFinding\bin\Release\zh-tw\ZedGraph.resources.dll
+D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Load_Form.resources
+D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Teory.resources
+D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Upload_Form.resources

@@ -126,8 +126,8 @@ namespace PathFinding
                     Finish_point = new Ppoint(x_cell_cliceked, y_cell_cliced, abs_coord);
                     break;
             }
-            Form1.X = x_cell_cliceked;
-            Form1.Y = y_cell_cliced;
+           // Form1.X = x_cell_cliceked;
+           // Form1.Y = y_cell_cliced;
         }
 
         public void init_drowing(int mode)
