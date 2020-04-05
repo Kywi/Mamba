@@ -50,8 +50,11 @@ namespace PathFinding
         private void Form1_Load(object sender, EventArgs e)
         {
             basic_sizes_AND_settings();
-            Teory teory_Form = new Teory();
-            teory_Form.ShowDialog();
+            if (!Read_Write_F.Check_Teory_Form_State())
+            {
+                Teory teory_Form = new Teory();
+                teory_Form.ShowDialog();
+            }
         }
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
@@ -107,6 +110,9 @@ namespace PathFinding
                     Draw.Anim.update_drow_panel();
                     A = 0;
                     break;
+                case 5:
+                    Draw.Anim.reDraw_cell(X, Y, 1);
+                    break;
             }
         }
 
@@ -143,7 +149,7 @@ namespace PathFinding
             if (e.Button == MouseButtons.Left)
             {
                 Draw.cell_clicker(e.X, e.Y, e.Button, 2);
-                A = 3;
+                A = 5;
                 DrawPanel.Invalidate();
             }
         }
@@ -505,6 +511,14 @@ namespace PathFinding
                 Form_progres.Show();
             }
         }
+
+        private void button6_Click_2(object sender, EventArgs e)
+        {
+            Teory teory_Form = new Teory();
+            teory_Form.ShowDialog();
+        }
+
+     
 
         //---------------------------------------------------------
 

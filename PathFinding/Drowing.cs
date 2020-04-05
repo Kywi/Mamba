@@ -110,6 +110,8 @@ namespace PathFinding
                     if (mode == 2)
                     {
                         Map[abs_coord] = true;
+                        Form1.X = x_cell_cliceked;
+                        Form1.Y = y_cell_cliced;
                     }
                     else
                     {
