@@ -31,7 +31,6 @@ namespace PathFinding
 
         public Algorithm_Wave(Form1 form1, Drowing draw_copy) : base(form1, draw_copy) { }
       
-
         private void Side_checker(Ppoint work_cell, string side, int mode = 0)
         {      
             int _y = 0, _x = 0, _z = 0;
@@ -87,14 +86,15 @@ namespace PathFinding
             _z = Drowing.Absol_Coord(_y, _x, draw_copy.NColumnX);
             if (draw_copy.Map[_z]) return;
     
+            //режим який визначає чи ми знаходимо шлях від фінішу ти до нього
             switch (mode)
             {
-                case 0:
+                case 0://до фінішу
                     if (draw_copy.Processed_cells[_z] != 0) return;
                     future_front.Add(new Ppoint(_x, _y, _z));
                     draw_copy.Processed_cells[_z] = draw_copy.Step;
                     break;
-                case 1:
+                case 1://від фінішу
                     if (draw_copy.Processed_cells[_z] <= 0) return;
                     min_Ways.Add(new min_way(_x, _y, _z, draw_copy.Processed_cells[_z]));
                     break;
@@ -103,7 +103,6 @@ namespace PathFinding
 
         public override void Path_Finding()
         {
-
             if(draw_copy.Start_point.z == -1 || draw_copy.Finish_point.z == -1)
             {
                 form1.Hide_load_form();
@@ -115,13 +114,13 @@ namespace PathFinding
             form1.Show_load_form();
             First_Step();
 
-            while(front_wave.Count != 0)
+            while(front_wave.Count != 0)//Начало нахожденя пути
             {
                 Mode = form1.Flag_radioButtons;
 
-                future_front = new List<Ppoint>(); ;
+                future_front = new List<Ppoint>();
 
-                while (front_wave.Count != 0)
+                while (front_wave.Count != 0)//Будую від поточного фронту наступний
                 {
                     Ppoint work_cell = front_wave.Pop();
                     for (int i = 0; i < 4; i++)
@@ -130,16 +129,16 @@ namespace PathFinding
                     }
                 }
 
-                future_front.Sort((x, y) => y.z.CompareTo(x.z));
+                future_front.Sort((x, y) => y.z.CompareTo(x.z));//дозволить з наступною перевіркою виключити дуплікати
 
-                int zz = -999;
+                int zz = -999;//Значення якого ніколи не буде 
                 foreach(Ppoint t_point in future_front)
                 {
-                    if(t_point.z != zz)
+                    if(t_point.z != zz)//Ця перевірка виключає дуплікати
                     {
                         front_wave.Push(t_point);
                         zz = t_point.z;
-                        if (t_point == draw_copy.Finish_point) 
+                        if (t_point == draw_copy.Finish_point) //Якщо знайдено фініш виходимо
                         {
                             find_step = draw_copy.Step;
                             if (form1.checkBox1.Checked)
@@ -156,7 +155,7 @@ namespace PathFinding
             }
 
 
-            if (find_step != 0)
+            if (find_step != 0)//Якщо шлях взагалі знайдено починаємо знаходженя шляху
             {
                 Stack<Ppoint> way_back = new Stack<Ppoint>();
                 way_back.Push(draw_copy.Finish_point);
@@ -166,6 +165,7 @@ namespace PathFinding
                     Ppoint work_cell = way_back.Peek();
                     min_Ways.Clear();
 
+                    //Шлях назад, перевірка по 4 напрямкам або по 8
                     for (int i = 0; i < 4; i++)
                     {
                         Side_checker(work_cell, Mas_OF_sides[i], 1);

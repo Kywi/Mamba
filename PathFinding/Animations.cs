@@ -33,6 +33,7 @@ namespace PathFinding
 
         }
 
+        //Метод дял типу кольору комірки
         private void draw_Cells(int x, int y, int type_of_Paint, int type_of_element = 0)
         {
             int Cell_X, Cell_Y;
@@ -43,29 +44,30 @@ namespace PathFinding
             switch (type_of_Paint)
             {
                 case 1:
-                    br = new SolidBrush(Color.FromArgb(119, 119, 119));
+
+                    br = new SolidBrush(Color.FromArgb(119, 119, 119));//Колір для стінки
                     break;
                 case 2:
-                    br = new SolidBrush(Color.Blue);
+                    br = new SolidBrush(Color.Blue);//Колір для свободної комірки
                     break;
                 case 3:
                     br = new SolidBrush(Color.FromArgb(34, 244, 34));
                     break;
                 case 4:
-                    br = new SolidBrush(Color.Red);
+                    br = new SolidBrush(Color.Red); //Колір дял фінішу
                     break;
                 case 5:
-                    br = new SolidBrush(Color.Purple);
+                    br = new SolidBrush(Color.Purple);//Колрі для опрацьованих комірок
                     break;
                 case 6:
-                    br = new SolidBrush(Color.FromArgb(0, 128, 255));
+                    br = new SolidBrush(Color.FromArgb(0, 128, 255));//Колір комірок які опрацьовуються
                     break;
             }
             elemnt_draw.FillRectangle(br, rec);
-            p = (type_of_element == 2) ?  new Pen(Color.Orange, 1) :  new Pen(Color.Black, 1);
-        
+            p = (type_of_element == 2) ?  new Pen(Color.Orange, 1) :  new Pen(Color.Black, 1);//Колір рамок комірок (оранжевий для тих які у масиві закритих)     
             elemnt_draw.DrawRectangle(p, rec);
-            if (type_of_element == 1)
+
+            if (type_of_element == 1)//Комірка від якої відбувається аналіз має в собі круг оранжевого кольору
             {
                 br = new SolidBrush(Color.Orange);
                 rec.Height /= 2;
@@ -76,6 +78,7 @@ namespace PathFinding
             }
         }
 
+        //Визначення кольору який потрібен дял данної комірки за наявносто тільки координат данної комірки
         public void chek_colour(int x, int y)
         {
             int z, circuit = 0;
@@ -92,22 +95,22 @@ namespace PathFinding
                 draw_Cells(x, y, 4, circuit);
                 return;
             }
-            if (z == draw_copy.Check_point.z)
+            if (z == draw_copy.Check_point.z)//Якщо комірка є аналізуючою
             {
                 draw_Cells(x, y, 5, 1);
                 return;
             }
-            if (draw_copy.Map[z])
+            if (draw_copy.Map[z])//Якщо комірка є стіною
             {
                 draw_Cells(x, y, 1);
                 return;
             }      
-            if (draw_copy.Processed_cells[z] == draw_copy.Step)
+            if (draw_copy.Processed_cells[z] == draw_copy.Step)//Якщо данну комріку ми перевіряємо
             {
                 draw_Cells(x, y, 6);
                 return;
             }
-            if (draw_copy.Processed_cells[z] != 0)
+            if (draw_copy.Processed_cells[z] != 0)//Якщо комірка є обробленою
             {
                 circuit = (draw_copy.Closed_cell[z] != 0) ? 2 : 0;
                 draw_Cells(x, y, 5, circuit);
@@ -116,6 +119,7 @@ namespace PathFinding
             draw_Cells(x, y, 2);
         }
 
+        //Метод який молює шлях назад отримуючи масив з точок типу Ppoint 
         public void draw_way(Stack<Ppoint> points)
         {
             SolidBrush yellow_br = new SolidBrush(Color.Yellow);
@@ -140,6 +144,7 @@ namespace PathFinding
 
         }
 
+        //Перемальовує картинку повністю
         public void reDraw_Screen()
         {
             for (int i = 0; i < draw_copy.NColumnX; i++)
@@ -149,15 +154,17 @@ namespace PathFinding
                     chek_colour(i, j);
                 }
             }
-            form1.DrawPanel.Image = picture;
+            update_drow_panel();
         }
 
+        //Перемальовує 1 комірку
         public void reDraw_cell(int x, int y, int type_paint)
         {
             draw_Cells(x, y, type_paint);
-            form1.DrawPanel.Image = picture;
+            update_drow_panel();
         }
 
+        //Переприсвоює картинку робочій області
         public void update_drow_panel()
         {
             form1.DrawPanel.Image = picture;

@@ -106,8 +106,8 @@ namespace PathFinding
             }
 
             _h = hevristic_funct(_x, _y, draw_copy.Finish_point.x, draw_copy.Finish_point.y);
-            _f = g + _h;
-            int index_result = open_Cells.FindIndex(cell => cell.point.z.Equals(_z));
+            _f = g + _h;//Оціночне значення яке складається з суми ваг комірок + зачення еврестичної функції
+            int index_result = open_Cells.FindIndex(cell => cell.point.z.Equals(_z));//перевірка чи є вже така комріка, щоб не було дуплікатів
             if (index_result == -1)
             {
                  open_Cells.Add(new struct_open_cell(_x, _y, _z, g, _h, _f, work_cell.point));
@@ -115,7 +115,7 @@ namespace PathFinding
             }
             else
             {
-                if (open_Cells[index_result].G > g)
+                if (open_Cells[index_result].G > g)//Якщо комірка вже існує перервіряємо чи ми прийшли до неї з меншим G
                 {
                     struct_open_cell temp_add = open_Cells[index_result];
                     temp_add.G = g;
@@ -140,15 +140,16 @@ namespace PathFinding
           
             First_Step();
             bool flag_find_step = true;
-            while(open_Cells.Count != 0)
+            while(open_Cells.Count != 0)//Початок знаходження шляху
             {
                 Mode = form1.Flag_radioButtons;
                 open_Cells.Sort((x, y) => x.F.CompareTo(y.F));
                 struct_open_cell work_cell = open_Cells[0];
                 open_Cells.RemoveAt(0);
-                draw_copy.Closed_cell[work_cell.point.z] = work_cell.parent_cell.z;
+                draw_copy.Closed_cell[work_cell.point.z] = work_cell.parent_cell.z;//Кладемо в текущу комірку ту з якої прийшли
                 draw_copy.Check_point = work_cell.point;
-
+                
+                //Перевірка по 4 чи по 8 напрямкам
                 for (int i = 0; i < 4; i++)
                 {
                     Side_checker(work_cell, Mas_OF_sides[i]);
@@ -161,7 +162,7 @@ namespace PathFinding
                         Side_checker(work_cell, Mas_OF_sides[i]);
                     }
                 }
-                if ((draw_copy.Closed_cell[draw_copy.Finish_point.z] != 0) && (draw_copy.Step != 2))
+                if ((draw_copy.Closed_cell[draw_copy.Finish_point.z] != 0) && (draw_copy.Step != 2))//Перевірка чи не кінець
                 {
                     if (flag_find_step)
                     {
@@ -182,13 +183,13 @@ namespace PathFinding
             }
 
             form1.textBox1.Text = Convert.ToString(draw_copy.Step);
-            if (find_step != 0)
+            if (find_step != 0)//Побудова зворотнього шялху якщо він взвгвлі є
             {
                 Stack<Ppoint> way_back = new Stack<Ppoint>();
                 way_back.Push(draw_copy.Finish_point);
                 int previous_element = draw_copy.Closed_cell[draw_copy.Finish_point.z];
 
-                while (way_back.Peek() != draw_copy.Start_point)
+                while (way_back.Peek() != draw_copy.Start_point)//Шлях назад
                 {
                     int x = 0, y = 0;
                     Drowing.Reference_to_XY(ref x, ref y, previous_element,draw_copy.NColumnX);
@@ -231,7 +232,8 @@ namespace PathFinding
                 draw_copy.Start_point.z, 0, _h, _h, draw_copy.Start_point));
         }
 
-        private int hevristic_funct(int x1, int y1, int x2, int y2)//Евристична функція для знаходження абсолютної відстані від поточної точки перевірки до фінішної точки
+        //Евристична функція для знаходження абсолютної відстані від поточної точки перевірки до фінішної точки
+        private int hevristic_funct(int x1, int y1, int x2, int y2)
         {
             int hevr_value = 0;
             hevr_value = (Math.Abs(y2 - y1) + Math.Abs(x2 - x1)) * 10;

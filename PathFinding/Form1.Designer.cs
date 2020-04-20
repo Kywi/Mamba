@@ -38,6 +38,7 @@
             this.cColunm_X = new System.Windows.Forms.NumericUpDown();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button9 = new System.Windows.Forms.Button();
@@ -55,12 +56,11 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.DrawPanel = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.size_cell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cRows_Y)).BeginInit();
@@ -223,6 +223,21 @@
             this.panel1.Size = new System.Drawing.Size(1529, 67);
             this.panel1.TabIndex = 20;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImage = global::PathFinding.Properties.Resources.information;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.ForeColor = System.Drawing.SystemColors.Control;
+            this.button6.Location = new System.Drawing.Point(1492, 1);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(36, 26);
+            this.button6.TabIndex = 39;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click_2);
             // 
             // comboBox2
             // 
@@ -428,33 +443,6 @@
             this.label6.TabIndex = 23;
             this.label6.Text = "Файл";
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Filter = "Карта лабіринта(*.LMap)|*.LMap";
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Filter = "Карта лабіринта(*.LMap)|*.LMap";
-            // 
-            // openFileDialog2
-            // 
-            this.openFileDialog2.Filter = "Зображення лабіринту(*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png;";
-            // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = global::PathFinding.Properties.Resources.information;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.SystemColors.Control;
-            this.button6.Location = new System.Drawing.Point(1492, 1);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(36, 26);
-            this.button6.TabIndex = 39;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click_2);
-            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Transparent;
@@ -483,6 +471,18 @@
             this.button2.TabIndex = 21;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "Карта лабіринта(*.LMap)|*.LMap";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Карта лабіринта(*.LMap)|*.LMap";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.Filter = "Зображення лабіринту(*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png;";
             // 
             // DrawPanel
             // 

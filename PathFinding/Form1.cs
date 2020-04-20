@@ -50,11 +50,6 @@ namespace PathFinding
         private void Form1_Load(object sender, EventArgs e)
         {
             basic_sizes_AND_settings();
-            if (!Read_Write_F.Check_Teory_Form_State())
-            {
-                Teory teory_Form = new Teory();
-                teory_Form.ShowDialog();
-            }
         }
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
@@ -91,26 +86,30 @@ namespace PathFinding
         {
             switch (A)
             {
-
                 case 1:
+                    //Повне перермалювання робочої області при зміні розміру комірки
                     Draw = new Drowing(this);
                     Draw.init_drowing(A);
                     A = 0;
                     break;
                 case 2:
+                    //Повне перермалювання робочої області при зміні розмірку кількості комірки
                     Draw = new Drowing(this);
                     Draw.init_drowing(A);
                     A = 0;
                     break;
                 case 3:
+                    //Перемалювання робочої області з заданими парпметрами
                     Draw.Anim.reDraw_Screen();
                     A = 0;
                     break;
                 case 4:
+                    //Перерисовка робочої області без зміни робочої області
                     Draw.Anim.update_drow_panel();
                     A = 0;
                     break;
                 case 5:
+                    //Перемалювання 1 комірки
                     Draw.Anim.reDraw_cell(X, Y, 1);
                     break;
             }
@@ -154,22 +153,7 @@ namespace PathFinding
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if (saveFileDialog1.FileName == null) return;
-                Read_Write_F read_Write_ = new Read_Write_F(this);
-                read_Write_.write_to_file(saveFileDialog1.FileName);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Upload_Form upload = new Upload_Form(this);
-            upload.ShowDialog();
-        }
-
+        //Гененрація лабіринту
         private void button7_Click(object sender, EventArgs e)
         {
             DrawPanel.Enabled = true;
@@ -185,6 +169,7 @@ namespace PathFinding
             }
         }
 
+        //Прохожденя лабиринта
         private void button5_Click(object sender, EventArgs e)
         {
             DrawPanel.Enabled = true;
@@ -203,25 +188,15 @@ namespace PathFinding
             }
         }
 
+        //Возобновления потока
         private void button9_Click(object sender, EventArgs e)
         {
             button9.Enabled = false;
             demostr.Resume();
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            switch (comboBox2.SelectedIndex)
-            {
-                case 0:
-                    Dividion();
-                    break;
-                case 1:
-                    Deep_Generation();
-                    break;
-            }
-        }
-
+   
+        //Очиста області від промальованого шляху
         private void button4_Click(object sender, EventArgs e)
         {
             A = 3;
@@ -229,25 +204,18 @@ namespace PathFinding
             DrawPanel.Invalidate();
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
         //-----------------------------------------------------------
 
 
         //-----------------------------------------------------------Some_functions
+
+        //Базові розміри і значання начальних змінних
         private void basic_sizes_AND_settings()
         {
             Draw = new Drowing(this);
             Draw.init_drowing(1);
             Flag_radioButtons = 1;
             Form_progres = new Load_Form();
-
-            //panel1.Width = this.Width;
-
-            // DrawPanel.Width = this.Width - 16;
-            //  DrawPanel.Height = this.Height - 150;
 
             size_cell.Maximum = Math.Min(DrawPanel.Width, DrawPanel.Height);
 
@@ -256,7 +224,6 @@ namespace PathFinding
 
             CheckForIllegalCrossThreadCalls = false;
       
-
             radiobuttons_list = new List<RadioButton>();
                 radiobuttons_list.Add(radioButton1);
                 radiobuttons_list.Add(radioButton2);
@@ -268,7 +235,6 @@ namespace PathFinding
                 buttons_list.Add(button3);
                 buttons_list.Add(button4);
                 buttons_list.Add(button5);
-                
                 buttons_list.Add(button7);
 
             NumericUpDowns_list = new List<NumericUpDown>();
@@ -278,8 +244,15 @@ namespace PathFinding
 
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
+
+            if (!Read_Write_F.Check_Teory_Form_State())
+            {
+                Teory teory_Form = new Teory();
+                teory_Form.ShowDialog();
+            }
         }
 
+        //Перемалювання робочої області
         public void update_screen()
         {
            A = 3;
@@ -287,6 +260,7 @@ namespace PathFinding
            DrawPanel.Update();
         }
 
+        //Стирання шляху який малюєтся алгоритмами проходження
         public void update_panel_without_redraw()
         {
             A = 4;
@@ -294,6 +268,7 @@ namespace PathFinding
             DrawPanel.Update();
         }
 
+        //------------------------------------------------------------Функції та методи для роботи з файлами
         private void write_to_file(string fname, string serialized_obj)
         {
             using (FileStream stream = new FileStream(fname, FileMode.Create))
@@ -320,7 +295,6 @@ namespace PathFinding
         {
             try
             {
-
                 if (openFileDialog2.ShowDialog() == DialogResult.OK)
                 {
                     Recognition_pict recognition = new Recognition_pict(this, draw);
@@ -336,10 +310,26 @@ namespace PathFinding
             }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFileDialog1.FileName == null) return;
+                Read_Write_F read_Write_ = new Read_Write_F(this);
+                read_Write_.write_to_file(saveFileDialog1.FileName);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Upload_Form upload = new Upload_Form(this);
+            upload.ShowDialog();
+        }
+        //----------------------------------------------------------------------------------
+
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             trackBar1.Enabled = false;
-           // button9.Enabled = false;
             if (radioButton1.Checked) Flag_radioButtons = 1;
             else if (radioButton2.Checked)
             {
@@ -354,7 +344,6 @@ namespace PathFinding
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-
             if (demostr == null)
             {
                 return;
@@ -366,11 +355,13 @@ namespace PathFinding
             demostr.Abort();
         }
 
+        //Зміна швидкості стану потоку
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
            Time_delay = trackBar1.Value*100;
         }
 
+        //Перевірка розмврва полів, для деяких алгоритмів генерації потрібно деяке початкове мінімальне значення
         private void Check_fields_size()
         {
             if ((cColunm_X.Value % 2) == 0) cColunm_X.Value -= 1;
@@ -379,6 +370,7 @@ namespace PathFinding
             if (cRows_Y.Value <= 3) cRows_Y.Value = 3;
         }
 
+        //Тип візуалізації алгоритму
         public void visualisation_mode(int mode, Form1 form1, int draw_m = 0)
         {
             switch (mode)
@@ -395,6 +387,7 @@ namespace PathFinding
             }
         }
 
+        //Блокування кнопок на формі
         public void lock_buttons()
         {
             foreach(Button button in buttons_list)
@@ -416,6 +409,7 @@ namespace PathFinding
             comboBox2.Enabled = !comboBox2.Enabled;
         }
 
+        //---------------------------------------------------Algorithm functions(тут розміщені функції для запуску потока з необхідним алгоритмом)
         private void Wave()
         {
             update_screen();
@@ -472,11 +466,6 @@ namespace PathFinding
             Demostr.Start();
         }
 
-        private void button6_Click_1(object sender, EventArgs e)
-        {
-           
-        }
-
         private void Deep_Generation()
         {
             update_screen();
@@ -490,7 +479,9 @@ namespace PathFinding
             });
             demostr.Start();
         }
+        //-----------------------------------------------------------------------------
 
+        //-------------------------------------------------Закриття і показ форми візуалізації
         public void Hide_load_form()
         {
             if (radioButton1.Checked)
@@ -499,7 +490,6 @@ namespace PathFinding
                 radioButton3.Enabled = true;
                 Form_progres.Hide();
             }
-
         }
 
         public void Show_load_form()
@@ -511,6 +501,7 @@ namespace PathFinding
                 Form_progres.Show();
             }
         }
+        //------------------------------------------------------------------------------------------
 
         private void button6_Click_2(object sender, EventArgs e)
         {
