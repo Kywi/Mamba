@@ -193,7 +193,7 @@ namespace PathFinding
                 {
                     int x = 0, y = 0;
                     Drowing.Reference_to_XY(ref x, ref y, previous_element,draw_copy.NColumnX);
-                    way_back.Push(new Ppoint(x,y,previous_element));
+                    way_back.Push(new Ppoint(x,y,previous_element));//Накидуєтсья масив точок для результуючого шляху
                     previous_element = draw_copy.Closed_cell[previous_element];
                 }
                 draw_copy.Anim.draw_way(way_back);

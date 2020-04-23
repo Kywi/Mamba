@@ -26,7 +26,7 @@ namespace PathFinding
             }
         }
 
-        struct rect_point
+        struct rect_point //РОзміщуються крайні точки області(крайні точки прямокутника) для ділення
         {
             public Ppoint P1;
             public Ppoint P2;
@@ -45,7 +45,7 @@ namespace PathFinding
 
         protected override void init_mas()
         {
-            draw_copy.init_drowing(2);
+            draw_copy.init_drowing(2);//повна очистка робочої області
         }
 
         public override void create_Labyrithm()
@@ -65,7 +65,7 @@ namespace PathFinding
                 Y_Numb_of_dividion = (temp.P2.y - temp.P1.y) / 2 - 1;
                 if ((X_Numb_of_dividion == 0) || (Y_Numb_of_dividion == 0)) continue;
                 int x0, y0; // претин ліній ділення
-                int rt=0;
+                int rt=0;//випадкове зачення 
                 int rk = ry.Next(Y_Numb_of_dividion - 1) + 1;
                 if ((X_Numb_of_dividion / Y_Numb_of_dividion) >= 2)
                 {
@@ -74,7 +74,7 @@ namespace PathFinding
                 else  rt = rx.Next(X_Numb_of_dividion - 1) + 1;
                 x0 = temp.P1.x + rt * 2;
                 y0 = temp.P1.y + rk * 2;
-
+                //області які отримуємо пілся ділення
                 Rect_Points.Push(new rect_point(temp.P1.x, temp.P1.y, x0, y0));
                 Rect_Points.Push(new rect_point(x0, temp.P1.y, temp.P2.x, y0));
                 Rect_Points.Push(new rect_point(x0, y0, temp.P2.x, temp.P2.y));
@@ -92,19 +92,21 @@ namespace PathFinding
                
                 form1.visualisation_mode(mode, form1, 1);
 
+                //отвори в цих областях
                 List<hole> h = new List<hole>();
                 h.Add(new hole((y0 - temp.P1.y) / 2, Mas_OF_sides[0]));
                 h.Add(new hole((temp.P2.y - y0) / 2, Mas_OF_sides[1]));
                 h.Add(new hole((x0 - temp.P1.x) / 2, Mas_OF_sides[2]));
                 h.Add(new hole((temp.P2.x - x0) / 2, Mas_OF_sides[3]));
-
+                
+                //покращення рандомізації
                 if (flag_reverse)
                 {
                     h.Reverse();
                 }
-
+                
+                //прорубування отворів
                 h.Sort((x, y) => y.count_holes.CompareTo(x.count_holes));
-
                 for(int i=0; i < h.Count-1; i++)
                 {
                     rt = rx.Next(1,h[i].count_holes);

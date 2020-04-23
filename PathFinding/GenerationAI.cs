@@ -21,7 +21,6 @@ namespace PathFinding
                 p = pt;
                 side = sidet;
             }
-
             public Ppoint p;
             public char side;
         }
@@ -43,6 +42,7 @@ namespace PathFinding
             }
         }
 
+        //пеервірка на чи можна прорубувати отвір в 4-ох напрямках від поточної точки
         private void check_neibours(int x, int y, char side)
         {
             int _y=0, _x=0, _z=0;
@@ -88,25 +88,23 @@ namespace PathFinding
             draw_copy.Check_point = temp;
             form1.visualisation_mode(mode,form1, 1);
             
-            while (chain_cells.Count != 0)
+            while (chain_cells.Count != 0)//початок генерації
             {
                 Mode = form1.Flag_radioButtons;
                 temp = chain_cells.Peek();
                 draw_copy.Check_point = temp;
                 neibor.Clear();
                 foreach (char tem in Mas_OF_sides)
-
                 {
                     check_neibours(temp.x, temp.y, tem);
                 }
                 if (neibor.Count == 0)
                 {
-                    chain_cells.Pop();
-                 
+                    chain_cells.Pop();         
                     form1.visualisation_mode(mode,form1);
                     continue;
                 }
-                nt = neibor[rand.Next(0, neibor.Count)];
+                nt = neibor[rand.Next(0, neibor.Count)];//обриаємо випадкову сторону сере доступних
                 switch (nt.side)
                 {
                     case 'U':
@@ -127,7 +125,7 @@ namespace PathFinding
                         break;
                 }
                 _z = Drowing.Absol_Coord(_y, _x, draw_copy.NColumnX);
-                draw_copy.Map[_z] = false;
+                draw_copy.Map[_z] = false;//прорубуємо стінку
                 draw_copy.Processed_cells[_z] = draw_copy.Step-1;
                 draw_copy.Processed_cells[nt.p.z] = draw_copy.Step;
             

@@ -53,12 +53,12 @@ namespace PathFinding
 
         }
 
-        public static int Absol_Coord(int rowY, int columnX, int numberOfColums)
+        public static int Absol_Coord(int rowY, int columnX, int numberOfColums)//Метод для отримання абсолютнї координати в масиві маючи тільки Х і У
         {
             return rowY * numberOfColums + columnX;
         }
 
-        public static void Reference_to_XY(ref int x, ref int y,int z,int numberOfColums)
+        public static void Reference_to_XY(ref int x, ref int y,int z,int numberOfColums)//Метод для отримання абсолютного Х і У маючи тільки z 
         {
             y = z / numberOfColums;
             x = z - y * numberOfColums;
@@ -83,7 +83,7 @@ namespace PathFinding
             }
         }
 
-        public void cell_clicker(int x, int y, MouseButtons c_button, int mode)
+        public void cell_clicker(int x, int y, MouseButtons c_button, int mode)//Змінює значення в натиснутій комірці на робочій області
         {
             if ((x >= (NColumnX * CellSize)) || (y >= (NRowsY * CellSize)) || (y < 0))
             {
@@ -128,11 +128,9 @@ namespace PathFinding
                     Finish_point = new Ppoint(x_cell_cliceked, y_cell_cliced, abs_coord);
                     break;
             }
-           // Form1.X = x_cell_cliceked;
-           // Form1.Y = y_cell_cliced;
         }
 
-        public void init_drowing(int mode)
+        public void init_drowing(int mode)//Встановлення початкових значень для лабіринту
         {
             switch (mode)
             {
@@ -160,6 +158,7 @@ namespace PathFinding
             Anim.reDraw_Screen();
         }
 
+        //Виводить крок на якому знайдено шлях
         public void Show_Step(int Find_Step)
         {
             MessageBox.Show("Виконано за " + Find_Step.ToString() + " кроків", "Результат виконання", MessageBoxButtons.OK,MessageBoxIcon.Information);
