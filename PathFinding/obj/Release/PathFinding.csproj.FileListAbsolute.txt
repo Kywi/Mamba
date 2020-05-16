@@ -43,3 +43,4 @@ D:\Kyrsova\PathFinding\PathFinding\bin\Release\zh-tw\ZedGraph.resources.dll
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Load_Form.resources
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Teory.resources
 D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.Upload_Form.resources
+D:\Kyrsova\PathFinding\PathFinding\obj\Release\PathFinding.All_Forms.SaveForm.resources
