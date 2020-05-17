@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>maze %282%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Emgu.CV.UI, Version=4.1.1.3497, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
       <HintPath>..\packages\EMGU.CV.4.1.1.3497\lib\net35\Emgu.CV.UI.dll</HintPath>
@@ -72,11 +75,11 @@
     <Compile Include="PathFinding_Alg\Wave\Algorithm_Wave.cs" />
     <Compile Include="Animation_at_main_form\Animations.cs" />
     <Compile Include="Main_class_for_maze\Drowing.cs" />
-    <Compile Include="All_Forms\Form1.cs">
+    <Compile Include="All_Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="All_Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="All_Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Generations_Alg\Abstract_class_for_Generation\Generation.cs" />
     <Compile Include="Generations_Alg\Deep_Generation\GenerationAI.cs" />
@@ -107,8 +110,8 @@
     <Compile Include="All_Forms\Upload_Form.Designer.cs">
       <DependentUpon>Upload_Form.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="All_Forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="All_Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="All_Forms\Load_Form.resx">
       <DependentUpon>Load_Form.cs</DependentUpon>
@@ -158,6 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <Content Include="maze %282%29.ico" />
+    <None Include="Resources\Image1.bmp" />
     <None Include="Resources\information.png" />
     <None Include="Resources\maze %282%29.png" />
   </ItemGroup>
