@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="PathFinding.Algorithm_A">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="PathFinding.Algorithm_A.struct_open_cell" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PathFinding_Alg\A_star\Algorithm_A.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAABAAAgAAAAgAAAABAAAAAAA=</HashCode>
+      <FileName>PathFinding_Alg\A_star\Algorithm_A.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Algorithm_Best_F">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="PathFinding.Algorithm_Best_F.struct_open_cell" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PathFinding_Alg\Best_First_Search\Algorithm_Best_F.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAABAAAgAAAAgAAAABAAAAAAA=</HashCode>
+      <FileName>PathFinding_Alg\Best_First_Search\Algorithm_Best_F.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Algorithm_Wave">
+    <Position X="5" Y="1.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="PathFinding.Algorithm_Wave.min_way" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PathFinding_Alg\Wave\Algorithm_Wave.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAwAAAAAIAAAAAABAAAgAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>PathFinding_Alg\Wave\Algorithm_Wave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Animations">
+    <Position X="5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACoAAAAAAgAAAAAAAMAAAAAIAAEAAABACEAA=</HashCode>
+      <FileName>Animation_at_main_form\Animations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Drowing">
+    <Position X="8.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABABEAAIABAAQBABAVAgRAEAIEAgAAAAIwgABAEACQA=</HashCode>
+      <FileName>Main_class_for_maze\Drowing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Form1" Collapsed="true">
+    <Position X="5.75" Y="12.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>NBCAJgQAkCEUBhARgALiQCCGIMg/iAFocHZtKwkC4Do=</HashCode>
+      <FileName>All_Forms\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Generation" Collapsed="true">
+    <Position X="1.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAABAoACAACAAAAAAAAAIBAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Generations_Alg\Abstract_class_for_Generation\Generation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Generation_By_Dividon">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="PathFinding.Generation_By_Dividon.hole" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Generations_Alg\Dividion_Generation\Generation_By_Dividon.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="PathFinding.Generation_By_Dividon.rect_point" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Generations_Alg\Dividion_Generation\Generation_By_Dividon.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAABAAAAKAAAAAAAAAAAA=</HashCode>
+      <FileName>Generations_Alg\Dividion_Generation\Generation_By_Dividon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PathFinding.GenerationAI">
+    <Position X="3" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="PathFinding.GenerationAI.neibours" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Generations_Alg\Deep_Generation\GenerationAI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAAAAAAAAAAAAAAAAABAAEgCAAAAAAAAAAAA=</HashCode>
+      <FileName>Generations_Alg\Deep_Generation\GenerationAI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PathFinding.Load_Form" Collapsed="true">
+    <Position X="6.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACAAABAAAACAAAACAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>All_Forms\Load_Form.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.PathFind" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAIAAoAAAAKAAAAAABAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PathFinding_Alg\AbstractClass\PathFind.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PathFinding.Ppoint">
+    <Position X="10.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAABgAQAAAiA=</HashCode>
+      <FileName>Data_Structure\Ppoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Program" Collapsed="true">
+    <Position X="2.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Read_Write_F">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAgAAAAAAA=</HashCode>
+      <FileName>Work_with_files\Read_Write_F.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Recognition_pict">
+    <Position X="10.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Work_with_files\Recognition_pict.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Teory" Collapsed="true">
+    <Position X="7.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAAABAAAASCAAACAAIoAAAAAEAAAgFAAAA=</HashCode>
+      <FileName>All_Forms\Teory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Upload_Form" Collapsed="true">
+    <Position X="8.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAACAAAACAAAACAAAJAAAAAEACAAAEAAA=</HashCode>
+      <FileName>All_Forms\Upload_Form.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Properties.Resources" Collapsed="true">
+    <Position X="4" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIABCAIAAAAEABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathFinding.Properties.Settings" Collapsed="true">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="PathFinding.Generation_Interface">
+    <Position X="12.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Generations_Alg\Generation_Interface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PathFinding.PathFind_Int">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PathFinding_Alg\PathFind_Int.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
