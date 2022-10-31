@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PathFinding
 {
-    class Algorithm_A : PathFind 
+    class Algorithm_A : PathFind
     {
         //-----------------------------------------Variables
 
@@ -110,8 +110,8 @@ namespace PathFinding
             int index_result = open_Cells.FindIndex(cell => cell.point.z.Equals(_z));//перевірка чи є вже така комріка, щоб не було дуплікатів
             if (index_result == -1)
             {
-                 open_Cells.Add(new struct_open_cell(_x, _y, _z, g, _h, _f, work_cell.point));
-                 draw_copy.Processed_cells[_z] = draw_copy.Step;
+                open_Cells.Add(new struct_open_cell(_x, _y, _z, g, _h, _f, work_cell.point));
+                draw_copy.Processed_cells[_z] = draw_copy.Step;
             }
             else
             {
@@ -135,12 +135,12 @@ namespace PathFinding
                 form1.Hide_load_form();
                 return;
             }
-          
-            int find_step = 0;        
-          
+
+            int find_step = 0;
+
             First_Step();
             bool flag_find_step = true;
-            while(open_Cells.Count != 0)//Початок знаходження шляху
+            while (open_Cells.Count != 0)//Початок знаходження шляху
             {
                 Mode = form1.Flag_radioButtons;
                 open_Cells.Sort((x, y) => x.F.CompareTo(y.F));
@@ -148,7 +148,7 @@ namespace PathFinding
                 open_Cells.RemoveAt(0);
                 draw_copy.Closed_cell[work_cell.point.z] = work_cell.parent_cell.z;//Кладемо в текущу комірку ту з якої прийшли
                 draw_copy.Check_point = work_cell.point;
-                
+
                 //Перевірка по 4 чи по 8 напрямкам
                 for (int i = 0; i < 4; i++)
                 {
@@ -192,8 +192,8 @@ namespace PathFinding
                 while (way_back.Peek() != draw_copy.Start_point)//Шлях назад
                 {
                     int x = 0, y = 0;
-                    Drowing.Reference_to_XY(ref x, ref y, previous_element,draw_copy.NColumnX);
-                    way_back.Push(new Ppoint(x,y,previous_element));//Накидуєтсья масив точок для результуючого шляху
+                    Drowing.Reference_to_XY(ref x, ref y, previous_element, draw_copy.NColumnX);
+                    way_back.Push(new Ppoint(x, y, previous_element));//Накидуєтсья масив точок для результуючого шляху
                     previous_element = draw_copy.Closed_cell[previous_element];
                 }
                 draw_copy.Anim.draw_way(way_back);
@@ -205,9 +205,9 @@ namespace PathFinding
             {
                 form1.Hide_load_form();
                 MessageBox.Show("Шлях не знайдено", "Повідомелння", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }   
+            }
             Reset_Values();
-           
+
         }
 
         protected override void First_Step()
@@ -235,8 +235,7 @@ namespace PathFinding
         //Евристична функція для знаходження абсолютної відстані від поточної точки перевірки до фінішної точки
         private int hevristic_funct(int x1, int y1, int x2, int y2)
         {
-            int hevr_value = 0;
-            hevr_value = (Math.Abs(y2 - y1) + Math.Abs(x2 - x1)) * 10;
+            int hevr_value = (Math.Abs(y2 - y1) + Math.Abs(x2 - x1)) * 10;
             return hevr_value;
         }
     }

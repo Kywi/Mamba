@@ -1,46 +1,10 @@
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\PathFinding.exe.config
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\PathFinding.exe
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\PathFinding.pdb
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csprojAssemblyReference.cache
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Form1.resources
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Properties.Resources.resources
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.GenerateResource.cache
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.CoreCompileInputs.cache
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.exe
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.pdb
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Newtonsoft.Json.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Newtonsoft.Json.xml
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.CopyComplete
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x64\concrt140.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x64\cvextern.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x64\msvcp140.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x64\opencv_videoio_ffmpeg411_64.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x64\vcruntime140.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x86\concrt140.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x86\cvextern.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x86\msvcp140.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x86\opencv_videoio_ffmpeg411.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\x86\vcruntime140.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Emgu.CV.UI.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Emgu.CV.World.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\ZedGraph.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Emgu.CV.UI.xml
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\Emgu.CV.World.xml
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\ZedGraph.xml
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\de\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\es\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\fr\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\hu\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\it\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\ja\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\pt\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\ru\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\sk\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\sv\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\tr\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\zh-cn\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\bin\Debug\zh-tw\ZedGraph.resources.dll
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Load_Form.resources
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Upload_Form.resources
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Teory.resources
-D:\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.All_Forms.SaveForm.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.AssemblyReference.cache
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.SuggestedBindingRedirects.cache
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Form1.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Load_Form.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.All_Forms.SaveForm.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Properties.Resources.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Teory.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.Upload_Form.resources
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.GenerateResource.cache
+D:\MyProj\HPK\3 kyrs\Kyrsova\PathFinding\PathFinding\obj\Debug\PathFinding.csproj.CoreCompileInputs.cache
